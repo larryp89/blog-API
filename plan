@@ -1,0 +1,83 @@
+1. Project Scope
+   Objective: Create a backend API with two different front-ends (one for blog consumption and one for blog management).
+   Features:
+
+   - Blog posts and comments
+   - User authentication and authorization
+   - Separate front-ends for readers and authors
+
+2. Project Structure
+   Monorepo: One GitHub repository with separate directories for the backend and each front-end.
+
+3. Data Models and Schemas
+
+Blog Posts:
+
+- Fields: title, content, authorId, createdAt, updatedAt, published
+
+Comments:
+
+- Fields: postId, userId, comment, createdAt
+
+Users:
+
+- Fields: username, email, password, role (author/reader)
+
+4. Set Up the Backend
+   Create Express App:
+
+   - Initialize the project and install dependencies:
+
+     - express, prisma, jsonwebtoken, passport, bcrypt, etc.
+
+   - Define Models in Prisma:
+     - Create prisma/schema.prisma with your data models.
+
+   Set Up Routes and Controllers:
+
+   - Organize routes RESTfully for posts and comments.
+   - Create controllers for handling CRUD operations.
+
+5. Implement Authentication
+   JWTs for Authentication:
+
+   - Use jsonwebtoken to create and verify JWTs.
+   - Protect routes that require authentication.
+   - Passport for Authentication Strategy (Optional):
+   - Use Passport’s JWT strategy to manage authentication.
+
+6. Test Your API
+
+   - Use Postman to test your API endpoints.
+
+7. Develop the Front-Ends (React)
+   Reader Front-End:
+
+   - Fetch and display posts and comments.
+   - Allow users to add comments.
+
+   Author Front-End:
+
+   - Manage posts (create, edit, delete, publish/unpublish).
+   - Manage comments (delete or edit).
+
+8. Manage State and Authentication on Front-End
+   Store JWTs:
+
+   - Use localStorage for storing JWTs.
+   - Attach JWTs to API requests via Authorization headers.
+
+9. Implement Additional Features
+   Rich Text Editor:
+
+Integrate tools like TinyMCE for authoring posts.
+
+Comments Management:
+
+Allow authors to manage comments on their posts.
+
+10. Deploy the Applications
+    Deployment:
+
+    - Deploy your API using a PaaS like Heroku, Vercel, or similar.
+    - Deploy front-end applications using appropriate hosting options.
