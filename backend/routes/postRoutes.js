@@ -1,10 +1,9 @@
 const { Router } = require("express");
+const postController = require("../controllers/postController");
 const postRoutes = Router();
 
 // Get all posts
-postRoutes.get("/", (req, res) => {
-  res.send("ALL THE POSTS");
-});
+postRoutes.get("/", postController.getAllPosts);
 
 // Get a specific post
 postRoutes.get("/:postID", (req, res) => {
