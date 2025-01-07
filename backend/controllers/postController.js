@@ -1,7 +1,7 @@
-const postRepository = require("../repositories/postRepository");
+const postService = require("../services/postService");
 
 const getAllPosts = async (req, res) => {
-  const posts = await postRepository.getAllPosts();
+  const posts = await postService.getAllPosts();
   res.json({ posts });
 };
 
