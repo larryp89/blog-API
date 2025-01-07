@@ -5,17 +5,15 @@ const postRoutes = Router();
 // Get all posts
 postRoutes.get("/", postController.getAllPosts);
 
-// Get a specific post
-postRoutes.get("/:postID", (req, res) => {
-  const postID = req.params.postID;
-  res.send(`POST NUMBER: ${postID}`);
-});
+// Get a specific post, i.e. /posts/5
+postRoutes.get("/:postID", postController.getSinglePost);
 
 // Update a post
 
+// Delete a post
+postRoutes.delete("/", postController.deletePost);
+
 // Make a post
-postRoutes.post("/", (req, res) => {
-  res.json({ message: "YOU MADE A POST" });
-});
+postRoutes.post("/", postController.createPost);
 
 module.exports = postRoutes;
