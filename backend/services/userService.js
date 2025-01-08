@@ -10,4 +10,6 @@ async function getUser(email) {
   return await userRepository.getUser(email);
 }
 
+// TODO: add delete user
+
 module.exports = { createUser, getUser };

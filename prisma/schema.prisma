@@ -14,14 +14,15 @@ datasource db {
 }
 
 model Post {
-  id        Int      @id @default(autoincrement())
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt // Automatically updated via changes for that unique identifier
-  title     String   @db.VarChar(255)
+  id        Int       @id @default(autoincrement())
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt // Automatically updated via changes for that unique identifier
+  title     String    @db.VarChar(255)
   content   String?
-  published Boolean  @default(false)
-  author    User     @relation(fields: [authorId], references: [id]) // Note: "author" does not appear in the DB and just helps clarify the relationship
+  published Boolean   @default(false)
+  author    User      @relation(fields: [authorId], references: [id]) // Note: "author" does not appear in the DB and just helps clarify the relationship
   authorId  Int
+  comments  Comment[]
 }
 
 model Comment {
@@ -30,6 +31,8 @@ model Comment {
   content   String
   author    User     @relation(fields: [userId], references: [id])
   userId    Int
+  post      Post     @relation(fields: [postId], references: [id])
+  postId    Int
 }
 
 model User {
