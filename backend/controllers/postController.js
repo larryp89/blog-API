@@ -3,7 +3,8 @@ const asyncHandler = require("express-async-handler");
 
 const getAllPosts = asyncHandler(async (req, res) => {
   const posts = await postService.getAllPosts();
-  res.json({ posts });
+  const user = req.user;
+  res.json({ posts, user });
 });
 
 const getSinglePost = asyncHandler(async (req, res) => {

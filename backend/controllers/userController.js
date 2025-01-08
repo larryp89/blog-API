@@ -1,6 +1,7 @@
 const userService = require("../services/userService");
 const asyncHandler = require("express-async-handler");
 const bcrypt = require("bcryptjs");
+const jwt = require("jsonwebtoken");
 
 const createUser = asyncHandler(async (req, res) => {
   const email = req.body.email;
@@ -12,14 +13,26 @@ const createUser = asyncHandler(async (req, res) => {
 });
 
 const login = asyncHandler(async (req, res) => {
-  const email = req.body.email;
-  const password = req.body.password;
+  const { email, password } = req.body;
   const userDetails = await userService.getUser(email);
+
   const match = await bcrypt.compare(password, userDetails.password);
+
   if (match) {
-    res.send("YOU ARE LEGIT");
+    // Only include necessary user data in the token (never password)
+    const tokenPayload = {
+      userId: userDetails.id,
+      email: userDetails.email,
+    };
+
+    jwt.sign(tokenPayload, "secretkey", (err, token) => {
+      if (err) {
+        return res.status(500).json({ error: "Error creating token" });
+      }
+      res.json({ token });
+    });
   } else {
-    res.send("FRAUD");
+    res.status(401).json({ error: "Invalid credentials" });
   }
 });
 

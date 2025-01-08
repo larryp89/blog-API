@@ -1,9 +1,10 @@
 const { Router } = require("express");
 const postController = require("../controllers/postController");
 const postRoutes = Router();
+const verifyToken = require("../middleware/verifyToken");
 
 // Get all posts
-postRoutes.get("/", postController.getAllPosts);
+postRoutes.get("/", verifyToken, postController.getAllPosts);
 
 // Get a specific post, i.e. /posts/5
 postRoutes.get("/:postID", postController.getSinglePost);
