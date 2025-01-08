@@ -9,7 +9,7 @@ function verifyToken(req, res, next) {
 
   const bearer = bearerHeader.split(" ");
   const token = bearer[1];
-
+  //   TODO: Modify secret key
   try {
     const decoded = jwt.verify(token, "secretkey");
     // decoded will contain { userId, email }
