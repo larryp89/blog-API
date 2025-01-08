@@ -6,7 +6,7 @@ const userRoutes = require("./routes/userRoutes");
 app.use(express.urlencoded({ extended: true })); // Middleware to parse URL-encoded bodies
 
 app.use("/posts", postRoutes);
-app.us("/auth", userRoutes);
+app.use("/auth", userRoutes);
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {

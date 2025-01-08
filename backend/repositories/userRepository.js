@@ -1,3 +1,5 @@
+const { prisma } = require("../config/client");
+
 async function createUser(email, password, username, role) {
   return await prisma.user.create({
     data: {
@@ -9,4 +11,12 @@ async function createUser(email, password, username, role) {
   });
 }
 
-module.exports = { createUser };
+async function getUser(email) {
+  return await prisma.user.findFirst({
+    where: {
+      email: email,
+    },
+  });
+}
+
+module.exports = { createUser, getUser };
