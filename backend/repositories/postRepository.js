@@ -1,4 +1,4 @@
-const { prisma } = require("../config/config");
+const { prisma } = require("../config/client");
 
 async function getAllPosts() {
   return await prisma.post.findMany();
