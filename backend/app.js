@@ -1,9 +1,11 @@
 const express = require("express"); // Import express
-const app = express(); // Initialise Express servers
+const cors = require("cors");
 const postRoutes = require("./routes/postRoutes");
 const userRoutes = require("./routes/userRoutes");
 
+const app = express(); // Initialise Express servers
 app.use(express.urlencoded({ extended: true })); // Middleware to parse URL-encoded bodies
+app.use(cors()); // Enable CORS for all routes
 
 app.use("/posts", postRoutes);
 app.use("/auth", userRoutes);
