@@ -1,6 +1,6 @@
 import App from "./App";
 import Blog from "./pages/Blog/Blog";
-
+import Signup from "./pages/Signup/Signup";
 const routes = [
   {
     path: "/",
@@ -9,6 +9,10 @@ const routes = [
   {
     path: "blog",
     element: <Blog />,
+  },
+  {
+    path: "signup",
+    element: <Signup />,
   },
 ];
 
