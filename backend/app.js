@@ -5,8 +5,8 @@ const userRoutes = require("./routes/userRoutes");
 const app = express(); // Initialise Express servers
 app.use(express.urlencoded({ extended: true })); // Middleware to parse URL-encoded bodies
 
-app.use("/posts", postRoutes);
-app.use("/auth", userRoutes);
+app.use("/api/posts", postRoutes);
+app.use("/api/auth", userRoutes);
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
