@@ -1,6 +1,7 @@
 import { useState } from "react";
 import FormInput from "./FormInput";
 import { login } from "../services/api";
+import { setToken, getToken, removeToken } from "../utils/localStorage";
 
 function LoginForm() {
   const [formData, setFormData] = useState({ email: "", password: "" });
@@ -17,9 +18,10 @@ function LoginForm() {
     event.preventDefault();
     try {
       const response = await login(formData);
-      console.log("HANDLE SUBMIT: RESPONSE", response);
+      if (response.token) {
+        setToken(response.token);
+      }
     } catch (err) {
-      console.log(formData);
       console.log(err);
     }
   };

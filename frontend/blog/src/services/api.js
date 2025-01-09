@@ -1,16 +1,15 @@
-import { body } from "express-validator";
+import { getToken } from "../utils/localStorage";
 
 const API_URL_POST = "http://localhost:3000/api/posts"; // Base URL of backend
 const API_URL_USER = "http://localhost:3000/api/auth"; // Base URL of backend
 
 const fetchPosts = async () => {
+  const token = getToken();
   const response = await fetch(`${API_URL_POST}`, {
     mode: "cors",
     method: "GET",
     headers: {
-      // TODO: Refactor this so is from local storage
-      authorization:
-        "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjQsImVtYWlsIjoiaGVsbG9AbWFpbC5jb20iLCJpYXQiOjE3MzYzMzMwNDB9.jbjZhuaMEaIgOA0A0IiKwVRySy4wSPjicm_IW8rOdtg",
+      authorization: `Bearer ${token}`,
     },
   });
   return response.json();

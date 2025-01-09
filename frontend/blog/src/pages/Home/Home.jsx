@@ -6,7 +6,6 @@ function Home() {
     <>
       <h1 className="home">Login or Signup to get started!</h1>
       <LoginForm />
-
       <Link to="blog">Blog</Link>
     </>
   );
