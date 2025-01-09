@@ -10,8 +10,6 @@ async function addComment(content, userID, postID) {
   });
 }
 
-
-
 async function getAllPostComments(postID) {
   return await prisma.comment.findMany({
     where: {
