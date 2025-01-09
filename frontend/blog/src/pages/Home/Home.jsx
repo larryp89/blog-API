@@ -1,11 +1,13 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-
+import LoginForm from "../../components/LoginForm";
 function Home() {
   return (
     <>
       <h1 className="home">Login or Signup to get started!</h1>
-      <Link to="blog">Profile page</Link>
+      <LoginForm />
+
+      <Link to="blog">Blog</Link>
     </>
   );
 }

@@ -1,9 +1,11 @@
-const express = require("express"); // Import express
+const express = require("express");
+const cors = require("cors");
 const postRoutes = require("./routes/postRoutes");
 const userRoutes = require("./routes/userRoutes");
 
-const app = express(); // Initialise Express servers
-app.use(express.urlencoded({ extended: true })); // Middleware to parse URL-encoded bodies
+const app = express();
+app.use(cors());
+app.use(express.json()); // Used to parse JSON payloads rather than URL encoded which is for directly submitted form
 
 app.use("/api/posts", postRoutes);
 app.use("/api/auth", userRoutes);

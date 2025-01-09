@@ -15,22 +15,20 @@ const createUser = asyncHandler(async (req, res) => {
 const login = asyncHandler(async (req, res) => {
   const { email, password } = req.body;
   const userDetails = await userService.getUser(email);
-
   const match = await bcrypt.compare(password, userDetails.password);
-
   if (match) {
     // Only include necessary user data in the token (never password)
     const tokenPayload = {
       userId: userDetails.id,
       email: userDetails.email,
     };
-
+    console.log(tokenPayload);
     jwt.sign(tokenPayload, "secretkey", { expiresIn: "2h" }, (err, token) => {
       if (err) {
         return res.status(500).json({ error: "Error creating token" });
       }
 
-      res.json({ token });
+      return res.json({ token });
     });
   } else {
     res.status(401).json({ error: "Invalid credentials" });

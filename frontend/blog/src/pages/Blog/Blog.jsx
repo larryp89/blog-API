@@ -1,8 +1,9 @@
 import { useState, useEffect } from "react";
 import { fetchPosts } from "../../services/api";
 
+const posts = await fetchPosts();
+
 function Blog() {
-  const posts = fetchPosts();
   console.log(posts);
   return (
     <div className="container">
