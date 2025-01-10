@@ -9,7 +9,8 @@ const createUser = asyncHandler(async (req, res) => {
   const username = req.body.username;
   const role = req.body.role;
   await userService.createUser(email, password, username, role);
-  res.send("New user successfully added!");
+  console.log("MADE DA USER");
+  return res.json("New user successfully added!");
 });
 
 const login = asyncHandler(async (req, res) => {

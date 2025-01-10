@@ -37,4 +37,26 @@ const login = async (formData) => {
   }
 };
 
-export { fetchPosts, login };
+const signup = async (formData) => {
+  try {
+    const response = await fetch(`${API_URL_USER}/signup`, {
+      mode: "cors",
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(formData),
+    });
+
+    const data = await response.json();
+
+    if (response.ok) {
+      console.log("Signed up");
+      return data;
+    } else {
+      console.error("Failed to sign up");
+    }
+  } catch (error) {
+    console.error("Error signing up:", error);
+  }
+};
+
+export { fetchPosts, login, signup };

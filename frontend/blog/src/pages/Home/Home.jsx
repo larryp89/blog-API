@@ -8,7 +8,6 @@ function Home() {
       <AuthProvider>
         <LoginForm />
       </AuthProvider>
-
       <Link to="blog">Blog</Link>
     </>
   );

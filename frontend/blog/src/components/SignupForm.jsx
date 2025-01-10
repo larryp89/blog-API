@@ -1,6 +1,7 @@
 import { useState } from "react";
 import FormInput from "./FormInput";
 import FormCheckbox from "./FormCheckbox";
+import { signup } from "../services/api";
 
 function SignupForm() {
   const [formData, setFormData] = useState({
@@ -22,10 +23,8 @@ function SignupForm() {
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
-      const response = await login(formData);
-      if (response.token) {
-        setToken(response.token);
-      }
+      const response = await signup(formData);
+      console.log(response);
     } catch (err) {
       console.log(err);
     }
