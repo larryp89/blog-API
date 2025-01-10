@@ -20,8 +20,9 @@ function LoginForm() {
     event.preventDefault();
     try {
       const response = await loginService(formData);
+      console.log("THE RESPONSE IS", response);
       if (response.token) {
-        login(response.token); // Use login from contet so the state is updated
+        login(response.token); // Use login from content so the state is updated
       }
     } catch (err) {
       console.log(err);
@@ -44,9 +45,8 @@ function LoginForm() {
         name="password"
         value={formData.password}
       />
-      <Link to="blog">
-        <button onClick={handleSubmit}>Log in</button>
-      </Link>
+      <button onClick={handleSubmit}>Log in</button>
+      <Link to="blog"></Link>
     </>
   );
 }

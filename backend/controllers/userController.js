@@ -8,9 +8,12 @@ const createUser = asyncHandler(async (req, res) => {
   const password = req.body.password;
   const username = req.body.username;
   const role = req.body.role;
-  await userService.createUser(email, password, username, role);
-  console.log("MADE DA USER");
-  return res.json("New user successfully added!");
+  try {
+    await userService.createUser(email, password, username, role);
+    return res.json("New user successfully added!");
+  } catch (err) {
+    return res.json("Something went wrong:", err);
+  }
 });
 
 const login = asyncHandler(async (req, res) => {
