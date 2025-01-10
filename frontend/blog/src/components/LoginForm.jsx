@@ -1,9 +1,10 @@
 import { useState } from "react";
+import { useAuth } from "../authContext";
 import FormInput from "./FormInput";
-import { login } from "../services/api";
-import { setToken, getToken, removeToken } from "../utils/localStorage";
+import { login as loginService } from "../services/api";
 
 function LoginForm() {
+  const { login } = useAuth();
   const [formData, setFormData] = useState({ email: "", password: "" });
 
   const handleChange = (event) => {
@@ -17,9 +18,9 @@ function LoginForm() {
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
-      const response = await login(formData);
+      const response = await loginService(formData);
       if (response.token) {
-        setToken(response.token);
+        login(response.token); // Use login from contet so the state is updated
       }
     } catch (err) {
       console.log(err);
