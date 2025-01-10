@@ -9,6 +9,7 @@ const getAllPosts = asyncHandler(async (req, res) => {
 
 const getSinglePost = asyncHandler(async (req, res) => {
   const postID = parseInt(req.params.postID);
+  console.log("YOU REQUESTED", postID);
   const post = await postService.getSinglePost(postID);
   res.json({ post });
 });

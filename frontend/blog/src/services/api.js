@@ -17,6 +17,20 @@ const fetchPosts = async () => {
   return data;
 };
 
+const fetchSinglePost = async (postiD) => {
+  const token = getToken();
+  const response = await fetch(`${API_URL_POST}/${postiD}`, {
+    mode: "cors",
+    method: "GET",
+    headers: {
+      authorization: `Bearer ${token}`,
+    },
+  });
+
+  const data = await response.json();
+  return data;
+};
+
 const login = async (formData) => {
   try {
     const response = await fetch(`${API_URL_USER}/login`, {
@@ -61,4 +75,4 @@ const signup = async (formData) => {
   }
 };
 
-export { fetchPosts, login, signup };
+export { fetchPosts, login, signup, fetchSinglePost };

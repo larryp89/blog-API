@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import BlogItem from "./BlogItem";
 import { fetchPosts } from "../services/api";
 
+// Get all the blog posts and display them as BlogItems
 function BlogPreview() {
   const [posts, setPosts] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
