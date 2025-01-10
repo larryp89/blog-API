@@ -1,7 +1,9 @@
 const { prisma } = require("../config/client");
 
 async function getAllPosts() {
-  return await prisma.post.findMany();
+  return await prisma.post.findMany({
+    include: { author: { select: { username: true } } },
+  });
 }
 
 async function getSinglePost(postID) {
