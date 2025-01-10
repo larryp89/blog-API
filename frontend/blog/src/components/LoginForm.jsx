@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useAuth } from "../authContext";
 import FormInput from "./FormInput";
 import { login as loginService } from "../services/api";
+import { Link } from "react-router-dom";
 
 function LoginForm() {
   const { login } = useAuth();
@@ -43,7 +44,9 @@ function LoginForm() {
         name="password"
         value={formData.password}
       />
-      <button onClick={handleSubmit}>Log in</button>
+      <Link to="blog">
+        <button onClick={handleSubmit}>Log in</button>
+      </Link>
     </>
   );
 }

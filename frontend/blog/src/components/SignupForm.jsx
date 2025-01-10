@@ -71,7 +71,7 @@ function SignupForm() {
         value={formData.author}
       />
 
-      <button onClick={handleSubmit}>Log in</button>
+      <button onClick={handleSubmit}>Sign up</button>
     </>
   );
 }
