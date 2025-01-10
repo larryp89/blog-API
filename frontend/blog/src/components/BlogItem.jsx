@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 function BlogItem({ blogPost }) {
   return (
     <>
@@ -5,6 +7,7 @@ function BlogItem({ blogPost }) {
         {blogPost.title} by {blogPost.author.username}
       </h1>
       <p>{blogPost.content}</p>
+      <Link to={`/blog/${blogPost.id}`}>View</Link>
     </>
   );
 }
