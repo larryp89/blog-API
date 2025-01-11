@@ -1,13 +1,14 @@
 import { Link } from "react-router-dom";
 import LoginForm from "../../components/LoginForm";
 import { useAuth } from "../../authContext";
+import Navbar from "../../components/Navbar";
 
 function Home() {
   const { isLoggedIn } = useAuth(); // Correctly destructure isLoggedIn
 
   return (
     <>
-      {isLoggedIn ? ( // Correct the conditional syntax
+      {isLoggedIn ? (
         <h1>You are logged in!</h1>
       ) : (
         <>
@@ -15,7 +16,10 @@ function Home() {
           <LoginForm />
         </>
       )}
-      <Link to="blog">Blog</Link>
+      <h4>
+        Not a member?
+        <Link to="signup"> Sign up!</Link>
+      </h4>
     </>
   );
 }

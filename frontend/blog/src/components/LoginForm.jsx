@@ -2,12 +2,12 @@ import { useState } from "react";
 import { useAuth } from "../authContext";
 import FormInput from "./FormInput";
 import { login as loginService } from "../services/api";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 function LoginForm() {
   const { login } = useAuth();
   const [formData, setFormData] = useState({ email: "", password: "" });
-
+  const navigate = useNavigate();
   const handleChange = (event) => {
     const { name, value } = event.target;
     setFormData({
@@ -22,7 +22,8 @@ function LoginForm() {
       const response = await loginService(formData);
       console.log("THE RESPONSE IS", response);
       if (response.token) {
-        login(response.token); // Use login from content so the state is updated
+        login(response.token);
+        navigate("/blog"); // Redirect to the blog page
       }
     } catch (err) {
       console.log(err);
