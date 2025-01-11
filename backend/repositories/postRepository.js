@@ -8,8 +8,9 @@ async function getAllPosts() {
 
 async function getSinglePost(postID) {
   return await prisma.post.findFirst({
-    where: {
-      id: postID,
+    where: { id: postID },
+    include: {
+      author: { select: { username: true } },
     },
   });
 }
