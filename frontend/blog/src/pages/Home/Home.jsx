@@ -3,12 +3,12 @@ import LoginForm from "../../components/LoginForm";
 import { useAuth } from "../../authContext";
 
 function Home() {
-  const { isLoggedIn } = useAuth(); 
+  const { isLoggedIn } = useAuth();
 
   return (
     <>
       {isLoggedIn ? (
-        <h1>You are logged in!</h1>
+        <h1 className="text-3xl font-bold underline">You are logged in!</h1>
       ) : (
         <>
           <h1 className="home">Login or Signup to get started!</h1>

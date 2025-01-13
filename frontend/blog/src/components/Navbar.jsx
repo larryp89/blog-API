@@ -9,7 +9,7 @@ function Navbar() {
     <>
       <Link to="/">Home</Link>
       <Link to="blog"> Blog</Link>
-      {isLoggedIn && <Logout />}
+      {isLoggedIn ? <Logout /> : <Link to="signup"> Sign up!</Link>}
     </>
   );
 }
