@@ -3,7 +3,7 @@ import LoginForm from "../../components/LoginForm";
 import { useAuth } from "../../authContext";
 
 function Home() {
-  const { isLoggedIn } = useAuth(); // Correctly destructure isLoggedIn
+  const { isLoggedIn } = useAuth(); 
 
   return (
     <>
