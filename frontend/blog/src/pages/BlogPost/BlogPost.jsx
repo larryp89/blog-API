@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { fetchSinglePost } from "../../services/api";
+import BlogPostDetail from "../../components/BlogPostDetail";
 
 function BlogPost() {
   const { postID } = useParams(); // Capture the postID from the URL
@@ -24,18 +25,27 @@ function BlogPost() {
     fetchPost();
   }, [postID]); // Add postID as a dependency to re-fetch if it changes
 
-  if (isLoading) return <div>Loading...</div>;
-  if (error) return <div>Error loading post</div>;
+  if (isLoading) {
+    return (
+      <div className="flex h-screen items-center justify-center">
+        <div className="text-gray-600">Loading...</div>
+      </div>
+    );
+  }
+
+  if (error) {
+    return (
+      <div className="container mx-auto px-4 py-12">
+        <div className="rounded-lg bg-red-50 p-4 text-red-800">
+          Error loading post: {error.message}
+        </div>
+      </div>
+    );
+  }
 
   return (
-    <div>
-      {post && (
-        <>
-          <h1>{post.title}</h1>
-          <p>{post.content}</p>
-          <small>By {post.author.username}</small>
-        </>
-      )}
+    <div className="container mx-auto">
+      {post && <BlogPostDetail post={post} />}
     </div>
   );
 }

@@ -1,25 +1,48 @@
 import { Link } from "react-router-dom";
 import LoginForm from "../../components/LoginForm";
 import { useAuth } from "../../authContext";
+import FormContainer from "../../components/FormContainer";
 
 function Home() {
   const { isLoggedIn } = useAuth();
 
   return (
-    <>
+    <div className="container mx-auto px-4 py-12">
       {isLoggedIn ? (
-        <h1 className="text-3xl font-bold underline">You are logged in!</h1>
+        <div className="text-center">
+          <h1 className="mb-6 text-4xl font-bold text-gray-900">
+            Welcome to Your Blog
+          </h1>
+          <p className="mb-8 text-lg text-gray-600">
+            Start exploring the latest posts or create your own
+          </p>
+          <Link
+            to="/blog"
+            className="inline-block rounded-lg bg-indigo-600 px-6 py-3 text-white transition-colors hover:bg-indigo-700"
+          >
+            View Blog Posts
+          </Link>
+        </div>
       ) : (
-        <>
-          <h1 className="home">Login or Signup to get started!</h1>
-          <LoginForm />
-          <h4>
-            Not a member?
-            <Link to="signup"> Sign up!</Link>
-          </h4>
-        </>
+        <div className="mx-auto max-w-md">
+          <h1 className="mb-8 text-center text-3xl font-bold text-gray-900">
+            Welcome Back
+          </h1>
+          <FormContainer>
+            <LoginForm />
+            <div className="mt-4 text-center text-sm text-gray-600">
+              Not a member?{" "}
+              <Link
+                to="/signup"
+                className="text-indigo-600 hover:text-indigo-700"
+              >
+                Sign up!
+              </Link>
+            </div>
+          </FormContainer>
+        </div>
       )}
-    </>
+    </div>
   );
 }
 

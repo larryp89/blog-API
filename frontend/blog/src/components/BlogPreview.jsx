@@ -9,14 +9,11 @@ function BlogPreview() {
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    console.log("Fetching posts...");
     const fetchData = async () => {
       try {
         const data = await fetchPosts();
-        console.log("Fetched posts:", data);
         setPosts(data.posts);
       } catch (err) {
-        console.error("Fetch error:", err);
         setError(err);
       } finally {
         setIsLoading(false);
@@ -25,28 +22,36 @@ function BlogPreview() {
     fetchData();
   }, []);
 
-  // Show loading state while fetching
   if (isLoading) {
-    return <div>Loading posts...</div>;
+    return (
+      <div className="flex h-40 items-center justify-center">
+        <div className="text-gray-600">Loading posts...</div>
+      </div>
+    );
   }
 
-  // Show error if there is one
   if (error) {
-    return <div>Error loading posts: {error.message}</div>;
+    return (
+      <div className="rounded-lg bg-red-50 p-4 text-red-800">
+        Error loading posts: {error.message}
+      </div>
+    );
   }
 
-  // Show message if no posts found
   if (posts.length === 0) {
-    return <div>No posts found</div>;
+    return (
+      <div className="rounded-lg bg-gray-50 p-4 text-gray-600">
+        No posts found
+      </div>
+    );
   }
 
-  // Only render posts when we have them
   return (
-    <>
+    <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
       {posts.map((post) => (
         <BlogItem key={post.id} blogPost={post} />
       ))}
-    </>
+    </div>
   );
 }
 
