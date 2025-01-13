@@ -1,7 +1,6 @@
 import { Link } from "react-router-dom";
 import LoginForm from "../../components/LoginForm";
 import { useAuth } from "../../authContext";
-import Navbar from "../../components/Navbar";
 
 function Home() {
   const { isLoggedIn } = useAuth(); // Correctly destructure isLoggedIn
@@ -14,12 +13,12 @@ function Home() {
         <>
           <h1 className="home">Login or Signup to get started!</h1>
           <LoginForm />
+          <h4>
+            Not a member?
+            <Link to="signup"> Sign up!</Link>
+          </h4>
         </>
       )}
-      <h4>
-        Not a member?
-        <Link to="signup"> Sign up!</Link>
-      </h4>
     </>
   );
 }

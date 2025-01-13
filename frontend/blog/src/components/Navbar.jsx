@@ -1,15 +1,15 @@
 import { Link } from "react-router-dom";
-import { useAuth } from "../authContext";
 import Logout from "./Logout";
+import { useAuth } from "../authContext";
 
 function Navbar() {
-  const { logout } = useAuth();
+  const { isLoggedIn } = useAuth(); // Correctly destructure isLoggedIn
+
   return (
     <>
-      <h1>I'm the nav bar</h1>
       <Link to="/">Home</Link>
       <Link to="blog"> Blog</Link>
-      <Logout />
+      {isLoggedIn && <Logout />}
     </>
   );
 }
