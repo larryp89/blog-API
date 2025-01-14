@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import BlogItem from "./BlogItem";
-import { fetchPosts } from "../services/api";
+import { fetchPosts } from "../../../shared/services/api";
 
 // Get all the blog posts and display them as BlogItems
 function BlogPreview() {

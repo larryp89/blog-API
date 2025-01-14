@@ -1,6 +1,6 @@
 import React from "react";
 import { Link, useLocation } from "react-router-dom";
-import { useAuth } from "../authContext";
+import { useAuth } from "../../../shared/authContext";
 import Logout from "./Logout";
 
 const Navbar = () => {

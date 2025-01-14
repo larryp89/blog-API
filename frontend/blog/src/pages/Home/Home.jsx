@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
-import LoginForm from "../../components/LoginForm";
-import { useAuth } from "../../authContext";
-import FormContainer from "../../components/FormContainer";
+import LoginForm from "../../../../shared/components/LoginForm";
+import { useAuth } from "../../../../shared/authContext";
+import FormContainer from "../../../../shared/components/FormContainer";
 
 function Home() {
   const { isLoggedIn } = useAuth();

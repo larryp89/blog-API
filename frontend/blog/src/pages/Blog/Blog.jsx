@@ -1,5 +1,5 @@
 import BlogPreview from "../../components/BlogPreview";
-import { useAuth } from "../../authContext";
+import { useAuth } from "../../../../shared/authContext";
 import { Link } from "react-router-dom";
 
 function Blog() {
