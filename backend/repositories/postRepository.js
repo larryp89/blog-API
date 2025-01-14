@@ -15,6 +15,7 @@ async function getSinglePost(postID) {
   });
 }
 
+
 async function createPost(title, content, authorID) {
   return await prisma.post.create({
     data: {

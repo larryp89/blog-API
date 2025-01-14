@@ -17,9 +17,9 @@ const fetchPosts = async () => {
   return data;
 };
 
-const fetchSinglePost = async (postiD) => {
+const fetchSinglePost = async (postID) => {
   const token = getToken();
-  const response = await fetch(`${API_URL_POST}/${postiD}`, {
+  const response = await fetch(`${API_URL_POST}/${postID}`, {
     mode: "cors",
     method: "GET",
     headers: {
@@ -30,6 +30,8 @@ const fetchSinglePost = async (postiD) => {
   const data = await response.json();
   return data;
 };
+
+// const fetchAuthoredPost = async(postID, authorID) => {};
 
 const login = async (formData) => {
   try {
