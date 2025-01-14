@@ -45,6 +45,27 @@ const fetchAuthorPosts = async () => {
   return data;
 };
 
+const createPost = async (postData) => {
+  console.log("API THE FORM DATA IS", postData);
+  const token = getToken();
+  const response = await fetch(`${API_URL_POST}`, {
+    mode: "cors",
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      authorization: `Bearer ${token}`,
+    },
+    body: JSON.stringify(postData),
+  });
+  const data = await response.json();
+  if (response.ok) {
+    console.log("Post submited successfully");
+    return data;
+  } else {
+    console.log("Something fucked up!");
+  }
+};
+
 const login = async (formData) => {
   try {
     const response = await fetch(`${API_URL_USER}/login`, {
@@ -89,4 +110,11 @@ const signup = async (formData) => {
   }
 };
 
-export { fetchPosts, login, signup, fetchSinglePost, fetchAuthorPosts };
+export {
+  fetchPosts,
+  login,
+  signup,
+  fetchSinglePost,
+  fetchAuthorPosts,
+  createPost,
+};

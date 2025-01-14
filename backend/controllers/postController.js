@@ -16,7 +16,6 @@ const getSinglePost = asyncHandler(async (req, res) => {
 const getAuthorPosts = asyncHandler(async (req, res) => {
   console.log("REQ USER", req.user);
   const authorID = parseInt(req.user.authorID);
-  console.log(authorID);
   const posts = await postService.getAuthorPosts(authorID);
   res.json({ posts });
 });
@@ -24,10 +23,11 @@ const getAuthorPosts = asyncHandler(async (req, res) => {
 const createPost = asyncHandler(async (req, res) => {
   const title = req.body.title;
   const content = req.body.content;
+  const authorID = req.user.authorID;
+
   // TODO: Authenticating the user
-  const authorID = parseInt(req.body.authorID);
   await postService.createPost(title, content, authorID);
-  res.send("You successfully posted!");
+  res.json({ message: "You successfully posted!" });
 });
 
 const deletePost = asyncHandler(async (req, res) => {
