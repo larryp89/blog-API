@@ -1,13 +1,12 @@
 import { Outlet } from "react-router-dom";
-import Navbar from "./Navbar";
 
-function Layout() {
+function AdminLayout() {
   return (
     <div>
-      <Navbar /> {/* Navbar will be displayed on every page */}
+      <h1>I am the admin layout</h1>
       <Outlet /> {/* Nested routes will be rendered here */}
     </div>
   );
 }
 
-export default Layout;
+export default AdminLayout;

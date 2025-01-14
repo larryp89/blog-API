@@ -3,7 +3,7 @@ import LoginForm from "../../../../shared/components/LoginForm";
 import { useAuth } from "../../../../shared/authContext";
 import FormContainer from "../../../../shared/components/FormContainer";
 
-function Home() {
+function BlogHome() {
   const { isLoggedIn } = useAuth();
 
   return (
@@ -46,4 +46,4 @@ function Home() {
   );
 }
 
-export default Home;
+export default BlogHome;

@@ -3,7 +3,7 @@ import { Link, useLocation } from "react-router-dom";
 import { useAuth } from "../../../shared/authContext";
 import Logout from "./Logout";
 
-const Navbar = () => {
+const BlogNavbar = () => {
   const { isLoggedIn } = useAuth();
   const location = useLocation();
 
@@ -51,4 +51,4 @@ const Navbar = () => {
   );
 };
 
-export default Navbar;
+export default BlogNavbar;
