@@ -1,4 +1,3 @@
-import React from "react";
 import { Link, useLocation } from "react-router-dom";
 import { useAuth } from "../../../shared/authContext";
 import Logout from "./Logout";
@@ -21,7 +20,7 @@ const BlogNavbar = () => {
       <div className="mx-auto flex max-w-5xl items-center justify-between px-4 py-3">
         <div className="flex space-x-6">
           <Link
-            to="/"
+            to=""
             className={`text-sm ${isActive("/") ? "text-indigo-600" : "text-gray-600 hover:text-indigo-600"}`}
           >
             Home

@@ -5,7 +5,7 @@ import BlogPost from "../blog/src/pages/BlogPost/BlogPost";
 import Signup from "../blog/src/pages/Signup/Signup";
 import AdminLayout from "../dashboard/src/components/AdminLayout";
 import AdminApp from "../dashboard/AdminApp";
-import AdminDashboard from "../dashboard/src/pages/AdminDashboard/AdminDashboard";
+import CreateNewPost from "../dashboard/src/pages/CreateNewPost/CreateNewPost";
 
 const routes = [
   {
@@ -25,7 +25,7 @@ const routes = [
     element: <AdminLayout />,
     children: [
       { path: "", element: <AdminApp /> },
-      { path: "dashboard", element: <AdminDashboard /> },
+      { path: "new-post", element: <CreateNewPost /> },
     ],
   },
 ];

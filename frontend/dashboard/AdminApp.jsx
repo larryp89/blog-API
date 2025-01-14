@@ -1,9 +1,9 @@
-import AdminHome from "./src/pages/AdminHome/AdminHome";
+import AdminDashboard from "./src/pages/AdminDashboard/AdminDashboard";
 
 function AdminApp() {
   return (
     <>
-      <AdminHome />
+      <AdminDashboard />
     </>
   );
 }

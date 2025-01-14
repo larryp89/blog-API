@@ -1,9 +1,10 @@
 import { Outlet } from "react-router-dom";
+import AdminNavbar from "./AdminNavbar";
 
 function AdminLayout() {
   return (
     <div>
-      <h1>I am the admin layout</h1>
+      <AdminNavbar />
       <Outlet /> {/* Nested routes will be rendered here */}
     </div>
   );
