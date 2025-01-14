@@ -1,7 +1,7 @@
 import { getToken } from "../utils/localStorage";
 
-const API_URL_POST = "http://localhost:3000/api/posts"; // Base URL of backend
-const API_URL_USER = "http://localhost:3000/api/auth"; // Base URL of backend
+const API_URL_POST = "http://localhost:3000/api/posts";
+const API_URL_USER = "http://localhost:3000/api/auth";
 
 const fetchPosts = async () => {
   const token = getToken();
@@ -31,7 +31,19 @@ const fetchSinglePost = async (postID) => {
   return data;
 };
 
-// const fetchAuthoredPost = async(postID, authorID) => {};
+const fetchAuthorPosts = async () => {
+  const token = getToken();
+  const response = await fetch(`${API_URL_POST}/auth-posts`, {
+    mode: "cors",
+    method: "GET",
+    headers: {
+      authorization: `Bearer ${token}`,
+    },
+  });
+
+  const data = await response.json();
+  return data;
+};
 
 const login = async (formData) => {
   try {
@@ -77,4 +89,4 @@ const signup = async (formData) => {
   }
 };
 
-export { fetchPosts, login, signup, fetchSinglePost };
+export { fetchPosts, login, signup, fetchSinglePost, fetchAuthorPosts };

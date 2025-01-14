@@ -12,7 +12,7 @@ function verifyToken(req, res, next) {
   //   TODO: Modify secret key
   try {
     const decoded = jwt.verify(token, "secretkey");
-    // decoded will contain { userId, email }
+    // decoded will contain { authorID, email }
     req.user = decoded; //NB Added by passport in local strategy
     next();
   } catch (error) {

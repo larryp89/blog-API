@@ -1,4 +1,6 @@
 import { useAuth } from "../../../../shared/authContext";
+import FormContainer from "../../../../shared/components/FormContainer";
+import CreatePost from "../../components/CreatePost";
 
 function CreateNewPost() {
   const { isLoggedIn } = useAuth();
@@ -12,6 +14,9 @@ function CreateNewPost() {
   return (
     <>
       <h1>WRITE A NEW BLOG HERE</h1>
+      <FormContainer>
+        <CreatePost />
+      </FormContainer>
     </>
   );
 }

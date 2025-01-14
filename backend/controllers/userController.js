@@ -23,7 +23,7 @@ const login = asyncHandler(async (req, res) => {
   if (match) {
     // Only include necessary user data in the token (never password)
     const tokenPayload = {
-      userId: userDetails.id,
+      authorID: userDetails.id,
       email: userDetails.email,
     };
     jwt.sign(tokenPayload, "secretkey", { expiresIn: "2h" }, (err, token) => {

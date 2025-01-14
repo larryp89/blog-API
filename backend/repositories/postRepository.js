@@ -15,6 +15,11 @@ async function getSinglePost(postID) {
   });
 }
 
+async function getAuthorPosts(authorID) {
+  return await prisma.post.findMany({
+    where: { authorId: authorID },
+  });
+}
 
 async function createPost(title, content, authorID) {
   return await prisma.post.create({
@@ -54,4 +59,5 @@ module.exports = {
   createPost,
   deletePost,
   updatePublishedStatus,
+  getAuthorPosts,
 };

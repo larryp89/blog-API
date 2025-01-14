@@ -9,6 +9,13 @@ const getSinglePost = async (postID) => {
   const post = await postRepository.getSinglePost(postID);
   return post;
 };
+
+const getAuthorPosts = async (authorID) => {
+  console.log(authorID);
+  const posts = await postRepository.getAuthorPosts(authorID);
+  return posts;
+};
+
 const createPost = async (title, content, authorID) => {
   await postRepository.createPost(title, content, authorID);
 };
@@ -27,4 +34,5 @@ module.exports = {
   deletePost,
   updatePublishedStatus,
   getSinglePost,
+  getAuthorPosts,
 };

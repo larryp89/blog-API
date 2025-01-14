@@ -1,6 +1,7 @@
 import { useState } from "react";
 import FormCheckbox from "./FormCheckbox";
 import FormInput from "./FormInput";
+import { signup } from "../services/api";
 
 function SignupForm() {
   const [formData, setFormData] = useState({

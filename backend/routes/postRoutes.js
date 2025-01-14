@@ -6,9 +6,10 @@ const verifyToken = require("../middleware/verifyToken");
 
 // Post routes
 postRoutes.get("/", verifyToken, postController.getAllPosts);
-postRoutes.get("/:postID", postController.getSinglePost);
 postRoutes.delete("/", postController.deletePost);
 postRoutes.post("/", postController.createPost);
+postRoutes.get("/auth-posts", verifyToken, postController.getAuthorPosts);
+postRoutes.get("/:postID", postController.getSinglePost);
 
 // Update a post
 // TODO: Add this bit
