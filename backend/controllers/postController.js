@@ -16,7 +16,8 @@ const getSinglePost = asyncHandler(async (req, res) => {
 const getAuthorPosts = asyncHandler(async (req, res) => {
   const authorID = parseInt(req.user.authorID);
   const posts = await postService.getAuthorPosts(authorID);
-  res.json({ posts });
+  const user = req.user;
+  res.json({ posts, user });
 });
 
 const createPost = asyncHandler(async (req, res) => {

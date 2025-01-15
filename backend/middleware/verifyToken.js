@@ -12,8 +12,8 @@ function verifyToken(req, res, next) {
   //   TODO: Modify secret key
   try {
     const decoded = jwt.verify(token, "secretkey");
-    // decoded will contain { authorID, email }
-    req.user = decoded; //NB Added by passport in local strategy
+    // decoded will contain { authorID, email } set on userController
+    req.user = decoded; //NB Same as how added by passport in local strategy
     next();
   } catch (error) {
     return res.status(403).json({ error: "Invalid token" });
