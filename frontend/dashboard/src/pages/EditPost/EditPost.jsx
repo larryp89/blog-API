@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { fetchSinglePost } from "../../../../shared/services/api";
 import EditPostDetails from "../../components/EditPostDetails";
+import FormContainer from "../../../../shared/components/FormContainer";
 
 function EditPost() {
   const { postID } = useParams(); // Capture the postID from the URL
@@ -44,7 +45,7 @@ function EditPost() {
 
   return (
     <div className="container mx-auto">
-      {post && <EditPostDetails post={post} />}
+      <FormContainer>{post && <EditPostDetails post={post} />}</FormContainer>
     </div>
   );
 }

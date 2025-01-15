@@ -1,4 +1,5 @@
-import { getToken } from "../utils/localStorage";
+import { getToken, removeToken } from "../utils/localStorage";
+import checkTokenExpired from "../utils/utilities";
 
 const API_URL_POST = "http://localhost:3000/api/posts";
 const API_URL_USER = "http://localhost:3000/api/auth";
@@ -12,6 +13,10 @@ const fetchPosts = async () => {
       authorization: `Bearer ${token}`,
     },
   });
+
+  if (checkTokenExpired(response.status)) {
+    return;
+  }
 
   const data = await response.json();
   return data;

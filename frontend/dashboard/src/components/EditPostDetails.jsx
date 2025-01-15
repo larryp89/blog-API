@@ -12,8 +12,6 @@ function EditPostDetails({ post }) {
     postID: post.id,
   });
 
-  console.log("The passed post contaisn", post);
-
   const handleChange = (event) => {
     const { name, type, checked, value } = event.target;
     setPostDetails({

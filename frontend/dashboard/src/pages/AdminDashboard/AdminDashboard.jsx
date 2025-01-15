@@ -3,7 +3,6 @@ import AdminPostsPreview from "../../components/AdminPostsPreview";
 
 function AdminDashboard({ user }) {
   const { isLoggedIn } = useAuth();
-  console.log(user);
   if (!isLoggedIn) {
     return (
       <>
