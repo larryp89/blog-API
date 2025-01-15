@@ -16,8 +16,11 @@ function BlogPost() {
         console.log("Fetched post:", data);
         setPost(data.post);
       } catch (err) {
-        console.log("Get single post error", err);
-        setError(err);
+        if (err === "Authentication failed") {
+          logout();
+          console.log("Get single post error", err);
+          setError(err);
+        }
       } finally {
         setIsLoading(false);
       }

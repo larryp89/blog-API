@@ -1,12 +1,14 @@
 import { useEffect, useState } from "react";
 import BlogItem from "./BlogItem";
 import { fetchPosts } from "../../../shared/services/apiMethods";
+import { useAuth } from "../../../shared/authContext";
 
 // Get all the blog posts and display them as BlogItems
 function BlogPreview() {
   const [posts, setPosts] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
+  const { logout } = useAuth();
 
   useEffect(() => {
     const fetchData = async () => {
@@ -14,13 +16,17 @@ function BlogPreview() {
         const data = await fetchPosts();
         setPosts(data.posts);
       } catch (err) {
-        setError(err);
+        if (err.message == "Unauthorised") {
+          logout();
+        } else {
+          setError(err);
+        }
       } finally {
         setIsLoading(false);
       }
     };
     fetchData();
-  }, []);
+  }, [logout]);
 
   if (isLoading) {
     return (
