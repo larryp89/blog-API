@@ -44,15 +44,17 @@ async function deletePost(authorID, postID) {
   });
 }
 
-async function updatePublishedStatus(authorID, postID, isPublished) {
+async function editPost(authorID, postID, title, content, isPublished) {
   return await prisma.post.update({
     where: {
-      authorID: authorID,
+      authorId: authorID,
       id: postID,
     },
 
     data: {
       published: isPublished,
+      title: title,
+      content: content,
     },
   });
 }
@@ -62,6 +64,6 @@ module.exports = {
   getSinglePost,
   createPost,
   deletePost,
-  updatePublishedStatus,
   getAuthorPosts,
+  editPost,
 };

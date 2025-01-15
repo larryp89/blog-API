@@ -23,7 +23,6 @@ const createPost = asyncHandler(async (req, res) => {
   const title = req.body.title;
   const content = req.body.content;
   const isPublished = req.body.isPublished;
-  console.log("IS it published?", isPublished);
   const authorID = req.user.authorID;
   await postService.createPost(title, content, authorID, isPublished);
   res.json({ message: "You successfully posted!" });
@@ -36,13 +35,15 @@ const deletePost = asyncHandler(async (req, res) => {
   res.send("Post deleted!");
 });
 
-// TODO:This will need to change once sort the front end
-// const updatePublishedStatus = async (req, res) => {
-//   const authorID = req.body.authorID;
-//   const postID = req.body.postID;
-//   const isPublished = req.body.isPublished;
-//   await postService.updatePublishedStatus(authorID, postID, isPublished);
-// };
+const editPost = asyncHandler(async (req, res) => {
+  const postID = req.body.postID;
+  const title = req.body.title;
+  const content = req.body.content;
+  const isPublished = req.body.isPublished;
+  const authorID = req.user.authorID;
+  await postService.editPost(authorID, postID, title, content, isPublished);
+  res.json({ messge: "Post successfully udpated!" });
+});
 
 module.exports = {
   getAllPosts,
@@ -50,4 +51,5 @@ module.exports = {
   getSinglePost,
   deletePost,
   getAuthorPosts,
+  editPost,
 };

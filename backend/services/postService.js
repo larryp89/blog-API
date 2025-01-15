@@ -23,15 +23,15 @@ const deletePost = async (authorID, postID) => {
   await postRepository.deletePost(authorID, postID);
 };
 
-const updatePublishedStatus = async (authorID, postID, isPublished) => {
-  await postRepository.updatePublishedStatus(authorID, postID, isPublished);
+const editPost = async (authorID, postID, title, content, isPublished) => {
+  await postRepository.editPost(authorID, postID, title, content, isPublished);
 };
 
 module.exports = {
   getAllPosts,
   createPost,
   deletePost,
-  updatePublishedStatus,
+  editPost,
   getSinglePost,
   getAuthorPosts,
 };

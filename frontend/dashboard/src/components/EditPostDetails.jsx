@@ -1,12 +1,13 @@
 import { useState } from "react";
 import FormInput from "../../../shared/components/FormInput";
 import FormCheckbox from "../../../shared/components/FormCheckbox";
-
+import { editPost } from "../../../shared/services/api";
 function EditPostDetails({ post }) {
   const [postDetails, setPostDetails] = useState({
     title: post.title,
     content: post.content,
-    isPublished: post.isPublished,
+    isPublished: post.published,
+    postID: post.id,
   });
 
   const handleChange = (event) => {
@@ -20,9 +21,9 @@ function EditPostDetails({ post }) {
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
-      createPost(postData);
+      editPost(postDetails);
     } catch (err) {
-      console.log("CreatePost error", err);
+      console.log("EditPostDetails error", err);
     }
   };
   return (

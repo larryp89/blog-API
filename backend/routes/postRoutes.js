@@ -8,11 +8,9 @@ const verifyToken = require("../middleware/verifyToken");
 postRoutes.get("/", verifyToken, postController.getAllPosts);
 postRoutes.delete("/", postController.deletePost);
 postRoutes.post("/", verifyToken, postController.createPost);
+postRoutes.put("/", verifyToken, postController.editPost);
 postRoutes.get("/auth-posts", verifyToken, postController.getAuthorPosts);
 postRoutes.get("/:postID", postController.getSinglePost);
-
-// Update a post
-// TODO: Add this bit
 
 // Nested comment routes
 postRoutes.get("/:postID/comments", commentController.getAllPostComments); // Get all comments for a post

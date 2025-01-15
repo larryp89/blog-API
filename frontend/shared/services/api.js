@@ -46,7 +46,6 @@ const fetchAuthorPosts = async () => {
 };
 
 const createPost = async (postData) => {
-  console.log("API THE FORM DATA IS", postData);
   const token = getToken();
   const response = await fetch(`${API_URL_POST}`, {
     mode: "cors",
@@ -62,7 +61,27 @@ const createPost = async (postData) => {
     console.log("Post submited successfully");
     return data;
   } else {
-    console.log("Something fucked up!");
+    console.log("Something went wrong submitting!");
+  }
+};
+
+const editPost = async (postData) => {
+  const token = getToken();
+  const response = await fetch(`${API_URL_POST}`, {
+    mode: "cors",
+    method: "PUT",
+    headers: {
+      "Content-Type": "application/json",
+      authorization: `Bearer ${token}`,
+    },
+    body: JSON.stringify(postData),
+  });
+  const data = await response.json();
+  if (response.ok) {
+    console.log("Post submited edited");
+    return data;
+  } else {
+    console.log("Something went wrong in editing!");
   }
 };
 
@@ -117,4 +136,5 @@ export {
   fetchSinglePost,
   fetchAuthorPosts,
   createPost,
+  editPost,
 };
