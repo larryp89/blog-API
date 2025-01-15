@@ -11,13 +11,12 @@ const getSinglePost = async (postID) => {
 };
 
 const getAuthorPosts = async (authorID) => {
-  console.log(authorID);
   const posts = await postRepository.getAuthorPosts(authorID);
   return posts;
 };
 
-const createPost = async (title, content, authorID) => {
-  await postRepository.createPost(title, content, authorID);
+const createPost = async (title, content, authorID, isPublished) => {
+  await postRepository.createPost(title, content, authorID, isPublished);
 };
 
 const deletePost = async (authorID, postID) => {

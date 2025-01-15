@@ -8,7 +8,9 @@ function AdminBlogItem({ blogPost }) {
         <h2 className="mb-2 text-xl font-semibold text-gray-900">
           {blogPost.title}
         </h2>
-        <p className="mb-4 text-gray-600 line-clamp-2">{blogPost.content}</p>
+        {blogPost.published ? "Published" : "Unpublished"}
+        <p>Created: {blogPost.createdAt}</p>
+        <p>Last edit: {blogPost.updatedAt}</p>
       </div>
     </Link>
   );

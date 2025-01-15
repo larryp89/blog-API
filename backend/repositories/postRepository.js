@@ -18,15 +18,19 @@ async function getSinglePost(postID) {
 async function getAuthorPosts(authorID) {
   return await prisma.post.findMany({
     where: { authorId: authorID },
+    include: {
+      author: { select: { username: true } },
+    },
   });
 }
 
-async function createPost(title, content, authorID) {
+async function createPost(title, content, authorID, isPublished) {
   return await prisma.post.create({
     data: {
       title: title,
       content: content,
       authorId: authorID,
+      published: isPublished,
     },
   });
 }
