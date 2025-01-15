@@ -6,7 +6,7 @@ const verifyToken = require("../middleware/verifyToken");
 
 // Post routes
 postRoutes.get("/", verifyToken, postController.getAllPosts);
-postRoutes.delete("/", postController.deletePost);
+postRoutes.delete("/", verifyToken, postController.deletePost);
 postRoutes.post("/", verifyToken, postController.createPost);
 postRoutes.put("/", verifyToken, postController.editPost);
 postRoutes.get("/auth-posts", verifyToken, postController.getAuthorPosts);

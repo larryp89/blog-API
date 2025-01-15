@@ -85,6 +85,26 @@ const editPost = async (postData) => {
   }
 };
 
+const deletePost = async (postData) => {
+  const token = getToken();
+  const response = await fetch(`${API_URL_POST}`, {
+    mode: "cors",
+    method: "DELETE",
+    headers: {
+      "Content-Type": "application/json",
+      authorization: `Bearer ${token}`,
+    },
+    body: JSON.stringify(postData),
+  });
+  const data = await response.json();
+  if (response.ok) {
+    console.log("Post deleted successfully");
+    return data;
+  } else {
+    console.log("Something went wrong deleting!");
+  }
+};
+
 const login = async (formData) => {
   try {
     const response = await fetch(`${API_URL_USER}/login`, {
@@ -137,4 +157,5 @@ export {
   fetchAuthorPosts,
   createPost,
   editPost,
+  deletePost,
 };

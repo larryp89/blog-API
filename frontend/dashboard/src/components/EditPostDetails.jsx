@@ -2,6 +2,8 @@ import { useState } from "react";
 import FormInput from "../../../shared/components/FormInput";
 import FormCheckbox from "../../../shared/components/FormCheckbox";
 import { editPost } from "../../../shared/services/api";
+import { deletePost } from "../../../shared/services/api";
+
 function EditPostDetails({ post }) {
   const [postDetails, setPostDetails] = useState({
     title: post.title,
@@ -9,6 +11,8 @@ function EditPostDetails({ post }) {
     isPublished: post.published,
     postID: post.id,
   });
+
+  console.log("The passed post contaisn", post);
 
   const handleChange = (event) => {
     const { name, type, checked, value } = event.target;
@@ -23,9 +27,19 @@ function EditPostDetails({ post }) {
     try {
       editPost(postDetails);
     } catch (err) {
-      console.log("EditPostDetails error", err);
+      console.log("editPostDetails error", err);
     }
   };
+
+  const handleDelete = async (event) => {
+    event.preventDefault();
+    try {
+      deletePost(postDetails);
+    } catch (err) {
+      console.log("deletePost error", err);
+    }
+  };
+
   return (
     <>
       <h1>This is the edit post form</h1>
@@ -55,6 +69,7 @@ function EditPostDetails({ post }) {
 
         <button type="submit">Edit Post</button>
       </form>
+      <button onClick={handleDelete}>Delete this post :(</button>
     </>
   );
 }

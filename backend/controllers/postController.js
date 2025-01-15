@@ -29,10 +29,10 @@ const createPost = asyncHandler(async (req, res) => {
 });
 
 const deletePost = asyncHandler(async (req, res) => {
-  const authorID = parseInt(req.body.authorID);
+  const authorID = parseInt(req.user.authorID);
   const postID = parseInt(req.body.postID);
   await postService.deletePost(authorID, postID);
-  res.send("Post deleted!");
+  res.json({ message: "Post deleted!" });
 });
 
 const editPost = asyncHandler(async (req, res) => {

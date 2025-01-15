@@ -13,7 +13,6 @@ function EditPost() {
     const fetchPost = async () => {
       try {
         const data = await fetchSinglePost(postID);
-        console.log("Fetched post:", data);
         setPost(data.post);
       } catch (err) {
         console.log("Get single post error", err);
