@@ -1,9 +1,9 @@
 import { useAuth } from "../../../../shared/authContext";
 import AdminPostsPreview from "../../components/AdminPostsPreview";
 
-function AdminDashboard() {
+function AdminDashboard({ user }) {
   const { isLoggedIn } = useAuth();
-
+  console.log(user);
   if (!isLoggedIn) {
     return (
       <>
@@ -15,7 +15,7 @@ function AdminDashboard() {
   return (
     <>
       <h1 className="mb-6 text-4xl font-bold text-gray-900">
-        Welcome back, Author!
+        Welcome back {user.username}!
       </h1>
       <h2>Click on a blog post to publish/unpublish, edit, or delete. </h2>
       <AdminPostsPreview />

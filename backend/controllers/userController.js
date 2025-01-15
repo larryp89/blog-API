@@ -25,6 +25,7 @@ const login = asyncHandler(async (req, res) => {
     const tokenPayload = {
       authorID: userDetails.id,
       email: userDetails.email,
+      username: userDetails.username,
     };
     jwt.sign(tokenPayload, "secretkey", { expiresIn: "2h" }, (err, token) => {
       if (err) {
