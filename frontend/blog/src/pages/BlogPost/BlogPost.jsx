@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { fetchSinglePost } from "../../../../shared/services/api";
+import { fetchSinglePost } from "../../../../shared/services/apiMethods";
 import BlogPostDetails from "../../components/BlogPostDetails";
 
 function BlogPost() {

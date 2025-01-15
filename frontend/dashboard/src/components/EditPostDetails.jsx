@@ -1,8 +1,8 @@
 import { useState } from "react";
 import FormInput from "../../../shared/components/FormInput";
 import FormCheckbox from "../../../shared/components/FormCheckbox";
-import { editPost } from "../../../shared/services/api";
-import { deletePost } from "../../../shared/services/api";
+import { editPost } from "../../../shared/services/apiMethods";
+import { deletePost } from "../../../shared/services/apiMethods";
 
 function EditPostDetails({ post }) {
   const [postDetails, setPostDetails] = useState({

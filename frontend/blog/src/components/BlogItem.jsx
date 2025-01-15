@@ -1,7 +1,6 @@
 import { Link } from "react-router-dom";
 
 function BlogItem({ blogPost }) {
-  console.log(blogPost);
   return (
     <Link to={`/blog/${blogPost.id}`} className="block">
       <div className="mb-6 rounded-lg border border-gray-200 bg-white p-6 shadow-sm transition-all hover:shadow-md">

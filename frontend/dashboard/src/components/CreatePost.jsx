@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { createPost } from "../../../shared/services/api";
+import { createPost } from "../../../shared/services/apiMethods";
 import FormInput from "../../../shared/components/FormInput";
 import FormCheckbox from "../../../shared/components/FormCheckbox";
 

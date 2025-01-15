@@ -27,7 +27,7 @@ const login = asyncHandler(async (req, res) => {
       email: userDetails.email,
       username: userDetails.username,
     };
-    jwt.sign(tokenPayload, "secretkey", { expiresIn: "30s" }, (err, token) => {
+    jwt.sign(tokenPayload, "secretkey", { expiresIn: "2h" }, (err, token) => {
       if (err) {
         return res.status(500).json({ error: "Error creating token" });
       }
