@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { fetchSinglePost } from "../../../../shared/services/api";
-import BlogPostDetails from "../../components/BlogPostDetails";
+import EditPostDetails from "../../components/EditPostDetails";
 
-function BlogPost() {
+function EditPost() {
   const { postID } = useParams(); // Capture the postID from the URL
   const [post, setPost] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
@@ -45,9 +45,9 @@ function BlogPost() {
 
   return (
     <div className="container mx-auto">
-      {post && <BlogPostDetails post={post} />}
+      {post && <EditPostDetails post={post} />}
     </div>
   );
 }
 
-export default BlogPost;
+export default EditPost;

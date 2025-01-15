@@ -17,9 +17,7 @@ function AdminDashboard() {
       <h1 className="mb-6 text-4xl font-bold text-gray-900">
         Welcome back, Author!
       </h1>
-      <h2>
-        This is where you create, edit, publish/unpublish, and delete blog posts
-      </h2>
+      <h2>Click on a blog post to publish/unpublish, edit, or delete. </h2>
       <AdminPostsPreview />
     </>
   );

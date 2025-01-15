@@ -1,6 +1,5 @@
 import { createContext, useState, useContext, useEffect } from "react";
 import { getToken, setToken, removeToken } from "./utils/localStorage";
-import { Link } from "react-router-dom";
 
 const AuthContext = createContext(); // Crete a context object which holds the shared state
 

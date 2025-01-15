@@ -1,4 +1,4 @@
-function BlogPostDetail({ post }) {
+function BlogPostDetails({ post }) {
   return (
     <article className="mx-auto max-w-2xl px-4 py-8">
       <h1 className="mb-4 text-3xl font-bold text-gray-900">{post.title}</h1>
@@ -15,4 +15,4 @@ function BlogPostDetail({ post }) {
   );
 }
 
-export default BlogPostDetail;
+export default BlogPostDetails;

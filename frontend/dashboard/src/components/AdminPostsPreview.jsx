@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { fetchAuthorPosts } from "../../../shared/services/api";
-import AdminBlogItem from "./AdminBlogItem";
+import AdminBlogItem from "./AdminBlogItem.jsx";
 
 // Get all the blog posts and display them as BlogItems
 function AdminPostsPreview() {
