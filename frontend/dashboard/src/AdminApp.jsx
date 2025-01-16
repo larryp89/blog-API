@@ -1,6 +1,7 @@
-import AdminDashboard from "./src/pages/AdminDashboard/AdminDashboard";
-import { fetchAuthorPosts } from "../shared/services/api";
+import AdminDashboard from "./pages/AdminDashboard/AdminDashboard";
+import { fetchAuthorPosts } from "../../shared/services/apiMethods";
 import { useState, useEffect } from "react";
+
 function AdminApp() {
   const [user, setUser] = useState("");
 
