@@ -19,8 +19,6 @@ class ApiClient {
   async handleResponse(response) {
     // Handle token expiration
     if (response.status === 401 || response.status === 403) {
-      const { logout } = useAuth();
-      logout();
       // Let the caller know authentication failed
       throw new Error("Authentication failed");
     }

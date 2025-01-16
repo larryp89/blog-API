@@ -1,6 +1,6 @@
 import { Link, useLocation } from "react-router-dom";
 import { useAuth } from "../../../shared/authContext";
-import Logout from "../../../blog/src/components/Logout";
+import AdminLogout from "./AdminLogout";
 
 const AdminNavbar = () => {
   const { isLoggedIn } = useAuth();
@@ -23,8 +23,11 @@ const AdminNavbar = () => {
             to=""
             className={`text-sm ${isActive("/admin") ? "text-indigo-600" : "text-gray-600 hover:text-indigo-600"}`}
           >
-            Dashboard
+            Home
           </Link>
+
+          <Link to="dashboard"> Dashboard</Link>
+
           <Link
             to="new-post"
             className={`text-sm ${isActive("/admin/new-post") ? "text-indigo-600" : "text-gray-600 hover:text-indigo-600"}`}
@@ -35,7 +38,7 @@ const AdminNavbar = () => {
 
         <div>
           {isLoggedIn ? (
-            <Logout />
+            <AdminLogout />
           ) : (
             <Link
               to="/signup"

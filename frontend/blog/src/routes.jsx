@@ -2,7 +2,7 @@ import BlogLayout from "./components/BlogLayout";
 import BlogApp from "./BlogApp";
 import Blog from "./pages/Blog/Blog";
 import BlogPost from "./pages/BlogPost/BlogPost";
-import Signup from "./pages/Signup/Signup";
+import SignupForm from "./components/SignupForm";
 
 const blogRoutes = [
   {

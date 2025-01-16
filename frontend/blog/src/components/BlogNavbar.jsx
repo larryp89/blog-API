@@ -1,6 +1,6 @@
 import { Link, useLocation } from "react-router-dom";
 import { useAuth } from "../../../shared/authContext";
-import Logout from "./Logout";
+import BlogLogout from "./BlogLogout";
 
 const BlogNavbar = () => {
   const { isLoggedIn } = useAuth();
@@ -35,7 +35,7 @@ const BlogNavbar = () => {
 
         <div>
           {isLoggedIn ? (
-            <Logout />
+            <BlogLogout />
           ) : (
             <Link
               to="/signup"

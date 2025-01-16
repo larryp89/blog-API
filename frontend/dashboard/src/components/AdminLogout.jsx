@@ -1,12 +1,12 @@
 import { useAuth } from "../../../shared/authContext";
 import { useNavigate } from "react-router-dom";
 
-function Logout() {
+function AdminLogout() {
   const { logout } = useAuth();
   const navigate = useNavigate();
   const handleClick = () => {
     logout();
-    navigate("/");
+    navigate("");
   };
   return (
     <>
@@ -20,4 +20,4 @@ function Logout() {
   );
 }
 
-export default Logout;
+export default AdminLogout;

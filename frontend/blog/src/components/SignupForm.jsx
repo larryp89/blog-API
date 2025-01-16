@@ -1,7 +1,7 @@
 import { useState } from "react";
-import FormCheckbox from "./FormCheckbox";
-import FormInput from "./FormInput";
-import { signup } from "../services/api";
+import FormCheckbox from "../../../shared/components/FormCheckbox";
+import FormInput from "../../../shared/components/FormInput";
+import { signup } from "../../../shared/services/apiMethods";
 
 function SignupForm() {
   const [formData, setFormData] = useState({

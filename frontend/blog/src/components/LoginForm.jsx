@@ -1,7 +1,7 @@
 import { useState } from "react";
-import { useAuth } from "../authContext";
-import FormInput from "./FormInput";
-import { login as loginService } from "../services/api";
+import { useAuth } from "../../../shared/authContext";
+import FormInput from "../../../shared/components/FormInput";
+import { login as loginService } from "../../../shared/services/apiMethods";
 import { Link, useNavigate } from "react-router-dom";
 
 function LoginForm() {

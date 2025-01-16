@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import LoginForm from "../../../../shared/components/LoginForm";
+import LoginForm from "../../components/LoginForm";
 import { useAuth } from "../../../../shared/authContext";
 import FormContainer from "../../../../shared/components/FormContainer";
 
