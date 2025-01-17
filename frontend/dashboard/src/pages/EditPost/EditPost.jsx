@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { fetchSinglePost } from "../../../../shared/services/api";
+import { fetchSinglePost } from "../../../../shared/services/apiMethods";
 import EditPostDetails from "../../components/EditPostDetails";
 import FormContainer from "../../../../shared/components/FormContainer";
 

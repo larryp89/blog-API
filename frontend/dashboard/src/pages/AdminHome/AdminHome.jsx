@@ -7,30 +7,34 @@ import AdminBlogItem from "../../components/AdminBlogItem";
 
 function AdminHome() {
   const { isLoggedIn } = useAuth();
-  const [user, setUser] = useState(null); // Initialize as null
-  const [posts, setPosts] = useState([]); // Initialize as empty array
+  const [user, setUser] = useState(null);
+  const [posts, setPosts] = useState([]);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
     const getUserData = async () => {
+      if (!isLoggedIn) return;
+
       try {
         const data = await fetchAuthorPosts();
         setUser(data.user);
         setPosts(data.posts);
         console.log(data.posts);
       } catch (err) {
-        console.log("error getting user details", err);
+        console.error("Error fetching author posts", err);
+        setError("Failed to load post data");
       }
     };
 
     getUserData();
-  }, []);
+  }, [isLoggedIn]);
 
   return (
     <div className="container mx-auto px-4 py-12">
       {isLoggedIn ? (
         <div className="text-center">
           <h1 className="mb-6 text-4xl font-bold text-gray-900">
-            Welcome to Blog Manager,{user ? ` ${user.username}` : ""}
+            Welcome to Blog Manager, {user ? ` ${user.username}` : ""}
           </h1>
           <p className="mb-8 text-lg text-gray-600">
             This is where you can edit, publish, unpublish, or delete your blog
@@ -62,6 +66,7 @@ function AdminHome() {
           </FormContainer>
         </div>
       )}
+      {error && <div className="mt-4 text-red-500">{error}</div>}
     </div>
   );
 }

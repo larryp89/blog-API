@@ -1,5 +1,4 @@
 import { getToken } from "../utils/localStorage";
-import { useAuth } from "../authContext";
 
 class ApiClient {
   constructor() {
