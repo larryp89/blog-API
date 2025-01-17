@@ -6,6 +6,13 @@ async function getAllPosts() {
   });
 }
 
+async function getPublishedPosts() {
+  return await prisma.post.findMany({
+    where: { published: true },
+    include: { author: { select: { username: true } } },
+  });
+}
+
 async function getSinglePost(postID) {
   return await prisma.post.findFirst({
     where: { id: postID },
@@ -61,6 +68,7 @@ async function editPost(authorID, postID, title, content, isPublished) {
 
 module.exports = {
   getAllPosts,
+  getPublishedPosts,
   getSinglePost,
   createPost,
   deletePost,

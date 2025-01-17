@@ -7,6 +7,12 @@ const getAllPosts = asyncHandler(async (req, res) => {
   res.json({ posts, user });
 });
 
+const getPublishedPosts = asyncHandler(async (req, res) => {
+  const posts = await postService.getPublishedPosts();
+  const user = req.user;
+  res.json({ posts, user });
+});
+
 const getSinglePost = asyncHandler(async (req, res) => {
   const postID = parseInt(req.params.postID);
   const post = await postService.getSinglePost(postID);
@@ -48,6 +54,7 @@ const editPost = asyncHandler(async (req, res) => {
 
 module.exports = {
   getAllPosts,
+  getPublishedPosts,
   createPost,
   getSinglePost,
   deletePost,
