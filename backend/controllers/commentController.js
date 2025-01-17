@@ -11,6 +11,7 @@ const addComment = asyncHandler(async (req, res) => {
 
 const getAllPostComments = asyncHandler(async (req, res) => {
   const postID = parseInt(req.params.postID);
+  console.log("THE POST ID IS", postID);
   const allComments = await commentService.getAllPostComments(postID);
   res.json(allComments);
 });

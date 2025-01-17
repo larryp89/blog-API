@@ -15,6 +15,9 @@ async function getAllPostComments(postID) {
     where: {
       postId: postID,
     },
+    include: {
+      author: { select: { username: true } },
+    },
   });
 }
 

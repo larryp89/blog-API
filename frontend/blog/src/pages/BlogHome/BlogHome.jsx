@@ -1,17 +1,19 @@
 import { Link } from "react-router-dom";
-import LoginForm from "../../components/LoginForm";
 import { useAuth } from "../../../../shared/authContext";
+import { useUser } from "../../../../shared/userContext";
 import FormContainer from "../../../../shared/components/FormContainer";
+import LoginForm from "../../components/LoginForm";
 
 function BlogHome() {
   const { isLoggedIn } = useAuth();
+  const { user } = useUser();
 
   return (
     <div className="container mx-auto px-4 py-12">
       {isLoggedIn ? (
         <div className="text-center">
           <h1 className="mb-6 text-4xl font-bold text-gray-900">
-            Welcome to Your Blog
+            Welcome to Your Blog, {user}
           </h1>
           <p className="mb-8 text-lg text-gray-600">
             Start exploring the latest posts or create your own

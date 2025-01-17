@@ -13,6 +13,13 @@ const editPost = (postData) => apiClient.put("/posts", postData);
 
 const deletePost = (postData) => apiClient.delete("/posts", postData);
 
+// Comment endpoints
+
+const fetchPostComments = (postID) =>
+  apiClient.get(`/posts/${postID}/comments`);
+
+const addComment = (postID, commentData) =>
+  apiClient.post(`/posts/${postID}`, commentData);
 // Auth endpoints
 const login = (formData) => apiClient.post("/auth/login", formData);
 
@@ -27,4 +34,6 @@ export {
   createPost,
   editPost,
   deletePost,
+  fetchPostComments,
+  addComment,
 };

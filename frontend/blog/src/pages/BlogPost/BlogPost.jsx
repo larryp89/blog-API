@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { fetchSinglePost } from "../../../../shared/services/apiMethods";
 import BlogPostDetails from "../../components/BlogPostDetails";
+import CommentLayout from "../../components/CommentLayout";
 
 function BlogPost() {
   const { postID } = useParams(); // Capture the postID from the URL
@@ -48,7 +49,12 @@ function BlogPost() {
 
   return (
     <div className="container mx-auto">
-      {post && <BlogPostDetails post={post} />}
+      {post && (
+        <>
+          <BlogPostDetails post={post} />
+          <CommentLayout postID={postID} />
+        </>
+      )}
     </div>
   );
 }

@@ -15,6 +15,6 @@ postRoutes.get("/:postID", postController.getSinglePost);
 // Nested comment routes
 postRoutes.get("/:postID/comments", commentController.getAllPostComments); // Get all comments for a post
 postRoutes.post("/:postID/comments", commentController.addComment); // Post a comment to a post
-postRoutes.delete("/postID/comments"); // Delete a comment from a post
+postRoutes.delete("/:postID/comments"); // Delete a comment from a post
 
 module.exports = postRoutes;
