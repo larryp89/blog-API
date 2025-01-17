@@ -1,11 +1,12 @@
 import { useAuth } from "../../../shared/authContext";
 import { useNavigate } from "react-router-dom";
-
+import { removeUserDetails } from "../../../shared/utils/localStorage";
 function BlogLogout() {
   const { logout } = useAuth();
   const navigate = useNavigate();
   const handleClick = () => {
     logout();
+    removeUserDetails();
     navigate("/");
   };
   return (

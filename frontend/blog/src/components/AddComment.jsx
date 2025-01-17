@@ -6,15 +6,16 @@ import FormInput from "../../../shared/components/FormInput";
 
 function AddComment({ postID }) {
   const { user } = useUser();
+  console.log("I AM THE USER", user);
   const [commentData, setComment] = useState({
-    userID: null,
+    userID: user.userID,
     content: "",
-    username: user,
+    postID: postID,
   });
 
   const handleChange = (event) => {
     const { value } = event.target;
-    setComment(value);
+    setComment({ ...commentData, content: value });
   };
 
   const handleSubmit = (event) => {

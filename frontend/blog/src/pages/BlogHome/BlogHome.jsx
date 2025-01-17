@@ -13,7 +13,7 @@ function BlogHome() {
       {isLoggedIn ? (
         <div className="text-center">
           <h1 className="mb-6 text-4xl font-bold text-gray-900">
-            Welcome to Your Blog, {user}
+            Welcome to Your Blog, {user.username}
           </h1>
           <p className="mb-8 text-lg text-gray-600">
             Start exploring the latest posts or create your own

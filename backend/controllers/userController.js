@@ -53,6 +53,7 @@ const login = asyncHandler(async (req, res) => {
         token,
         user: {
           username: userDetails.username,
+          userID: userDetails.id,
           email: userDetails.email,
           role: userDetails.role,
         },

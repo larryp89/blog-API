@@ -3,6 +3,7 @@ import { useAuth } from "../../../shared/authContext";
 import { useUser } from "../../../shared/userContext";
 import { login as loginService } from "../../../shared/services/apiMethods";
 import { Link, useNavigate } from "react-router-dom";
+import { setUserDetails } from "../../../shared/utils/localStorage";
 import FormInput from "../../../shared/components/FormInput";
 
 function LoginForm() {
@@ -27,8 +28,13 @@ function LoginForm() {
       console.log("THE RESPONSE IS", response);
       if (response.token) {
         login(response.token);
-        setUser(response.user.username);
-        navigate("/blog"); // Redirect to the blog page
+        const storedUser = {
+          username: response.user.username,
+          userID: response.user.userID,
+        };
+        setUserDetails(storedUser);
+        setUser(storedUser);
+        navigate("");
       }
     } catch (err) {
       console.log(err);
