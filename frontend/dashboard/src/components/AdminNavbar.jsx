@@ -23,10 +23,8 @@ const AdminNavbar = () => {
             to=""
             className={`text-sm ${isActive("/admin") ? "text-indigo-600" : "text-gray-600 hover:text-indigo-600"}`}
           >
-            Home
+            My Dashboard
           </Link>
-
-          <Link to="dashboard"> Dashboard</Link>
 
           <Link
             to="new-post"
