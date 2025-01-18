@@ -11,7 +11,7 @@ function CommentLayout({ postID }) {
       try {
         const data = await fetchPostComments(postID);
         console.log("Fetched comments:", data);
-        setComments(data);
+        setComments(data.comments);
       } catch (err) {
         console.log(err);
       }
