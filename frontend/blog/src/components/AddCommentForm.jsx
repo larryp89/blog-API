@@ -4,9 +4,8 @@ import { useUser } from "../../../shared/userContext";
 import FormContainer from "../../../shared/components/FormContainer";
 import FormInput from "../../../shared/components/FormInput";
 
-function AddComment({ postID }) {
+function AddCommentForm({ postID }) {
   const { user } = useUser();
-  console.log("I AM THE USER", user);
   const [commentData, setComment] = useState({
     userID: user.userID,
     content: "",
@@ -19,8 +18,9 @@ function AddComment({ postID }) {
   };
 
   const handleSubmit = (event) => {
-    event.preventdefault();
+    event.preventDefault();
     addComment(postID, commentData);
+    console.log(commentData);
   };
 
   return (
@@ -40,4 +40,4 @@ function AddComment({ postID }) {
   );
 }
 
-export default AddComment;
+export default AddCommentForm;

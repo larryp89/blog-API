@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { fetchPostComments } from "../../../shared/services/apiMethods";
 import CommentItem from "./CommentItem";
-import AddComment from "./AddComment";
+import AddCommentForm from "./AddCommentForm";
 
 function CommentLayout({ postID }) {
   const [comments, setComments] = useState([]);
@@ -11,7 +11,7 @@ function CommentLayout({ postID }) {
       try {
         const data = await fetchPostComments(postID);
         console.log("Fetched comments:", data);
-        setComments(data.content);
+        setComments(data);
       } catch (err) {
         console.log(err);
       }
@@ -23,17 +23,17 @@ function CommentLayout({ postID }) {
     return (
       <>
         <h1>No comments to show</h1>
-        <AddComment postID={postID} />
+        <AddCommentForm postID={postID} />
       </>
     );
   }
 
   return (
     <>
-      {comments.map((comment) => {
-        <CommentItem comment={comment} />;
-      })}
-      <AddComment postID={postID} />
+      {comments.map((comment) => (
+        <CommentItem key={comment.id} comment={comment} />
+      ))}
+      <AddCommentForm postID={postID} />
     </>
   );
 }

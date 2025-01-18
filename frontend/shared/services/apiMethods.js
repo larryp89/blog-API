@@ -19,7 +19,7 @@ const fetchPostComments = (postID) =>
   apiClient.get(`/posts/${postID}/comments`);
 
 const addComment = (postID, commentData) =>
-  apiClient.post(`/posts/${postID}`, commentData);
+  apiClient.post(`/posts/${postID}/comments`, commentData);
 // Auth endpoints
 const login = (formData) => apiClient.post("/auth/login", formData);
 

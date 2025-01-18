@@ -6,12 +6,11 @@ const addComment = asyncHandler(async (req, res) => {
   const userID = parseInt(req.body.userID);
   const postID = parseInt(req.params.postID);
   await commentService.addComment(content, userID, postID);
-  res.send("YOU POSTED A COMMENT YOUNG PADAWAN");
+  res.json({ message: "YOU POSTED A COMMENT YOUNG PADAWAN" });
 });
 
 const getAllPostComments = asyncHandler(async (req, res) => {
   const postID = parseInt(req.params.postID);
-  console.log("THE POST ID IS", postID);
   const allComments = await commentService.getAllPostComments(postID);
   res.json(allComments);
 });
