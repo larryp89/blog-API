@@ -4,7 +4,7 @@ import { useUser } from "../../../shared/userContext";
 import FormContainer from "../../../shared/components/FormContainer";
 import FormInput from "../../../shared/components/FormInput";
 
-function AddCommentForm({ postID }) {
+function AddCommentForm({ postID, onCommentAdded }) {
   const { user } = useUser();
   const [commentData, setComment] = useState({
     userID: user.userID,
@@ -17,10 +17,15 @@ function AddCommentForm({ postID }) {
     setComment({ ...commentData, content: value });
   };
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
-    addComment(postID, commentData);
-    console.log(commentData);
+    try {
+      await addComment(postID, commentData);
+      setComment({ ...commentData, content: "" }); // Clear the input
+      onCommentAdded(); // Trigger refresh of comments
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   return (
