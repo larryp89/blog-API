@@ -20,6 +20,9 @@ function AddCommentForm({ postID, onCommentAdded }) {
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
+      if (!window.confirm("Submit comment?")) {
+        return;
+      }
       await addComment(postID, commentData);
       setComment({ ...commentData, content: "" }); // Clear the input
       onCommentAdded(); // Trigger refresh of comments
