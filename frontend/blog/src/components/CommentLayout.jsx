@@ -21,20 +21,22 @@ function CommentLayout({ postID }) {
 
   if (!comments || comments.length === 0) {
     return (
-      <>
-        <h1>No comments to show</h1>
+      <div className="space-y-6">
+        <h1 className="text-xl font-semibold text-gray-900">
+          No comments to show
+        </h1>
         <AddCommentForm postID={postID} />
-      </>
+      </div>
     );
   }
 
   return (
-    <>
+    <div className="space-y-6">
       {comments.map((comment) => (
         <CommentItem key={comment.id} comment={comment} />
       ))}
       <AddCommentForm postID={postID} />
-    </>
+    </div>
   );
 }
 

@@ -24,19 +24,27 @@ function AddCommentForm({ postID }) {
   };
 
   return (
-    <>
+    <div className="mt-6">
       <FormContainer>
-        <form onSubmit={handleSubmit}>
-          <FormInput
-            text="Add a comment"
-            type="textarea"
-            handleChange={handleChange}
-            name="comment"
-          />
-          <button type="submit">Add comment</button>
+        <form onSubmit={handleSubmit} className="space-y-4">
+          <div className="rounded-lg border border-gray-200 bg-white p-4">
+            <FormInput
+              text="Add a comment"
+              type="textarea"
+              handleChange={handleChange}
+              name="comment"
+              className="w-full resize-none rounded-md border-gray-300 focus:border-indigo-500 focus:ring-indigo-500"
+            />
+          </div>
+          <button
+            type="submit"
+            className="rounded-lg bg-indigo-600 px-4 py-2 text-white transition-colors hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+          >
+            Add comment
+          </button>
         </form>
       </FormContainer>
-    </>
+    </div>
   );
 }
 

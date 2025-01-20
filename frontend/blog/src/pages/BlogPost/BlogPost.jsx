@@ -52,6 +52,7 @@ function BlogPost() {
       {post && (
         <>
           <BlogPostDetails post={post} />
+          <h1>Comments</h1>
           <CommentLayout postID={postID} />
         </>
       )}
