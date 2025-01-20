@@ -19,10 +19,10 @@ function AddCommentForm({ postID, onCommentAdded }) {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
+    if (!window.confirm("Submit comment?")) {
+      return;
+    }
     try {
-      if (!window.confirm("Submit comment?")) {
-        return;
-      }
       await addComment(postID, commentData);
       setComment({ ...commentData, content: "" }); // Clear the input
       onCommentAdded(); // Trigger refresh of comments
@@ -45,12 +45,14 @@ function AddCommentForm({ postID, onCommentAdded }) {
               className="w-full resize-none rounded-md border-gray-300 focus:border-indigo-500 focus:ring-indigo-500"
             />
           </div>
-          <button
-            type="submit"
-            className="rounded-lg bg-indigo-600 px-4 py-2 text-white transition-colors hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
-          >
-            Add comment
-          </button>
+          <div className="flex justify-center mt-4 pb-4">
+            <button
+              type="submit"
+              className="rounded-lg bg-indigo-600 px-4 py-2 text-white transition-colors hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+            >
+              Add comment
+            </button>
+          </div>
         </form>
       </FormContainer>
     </div>
