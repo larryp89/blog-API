@@ -13,7 +13,6 @@ function CreateNewPost() {
   }
   return (
     <>
-      <h1>WRITE A NEW BLOG HERE</h1>
       <FormContainer>
         <CreatePost />
       </FormContainer>
