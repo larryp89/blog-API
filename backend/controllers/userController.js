@@ -7,7 +7,7 @@ const createUser = asyncHandler(async (req, res) => {
   const email = req.body.email;
   const password = req.body.password;
   const username = req.body.username;
-  const role = req.body.role;
+  const role = req.body.author ? "author" : "reader";
   try {
     await userService.createUser(email, password, username, role);
     return res.json("New user successfully added!");
