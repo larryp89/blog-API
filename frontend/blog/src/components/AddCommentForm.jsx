@@ -38,6 +38,7 @@ function AddCommentForm({ postID, onCommentAdded }) {
               type="textarea"
               handleChange={handleChange}
               name="comment"
+              value={commentData.content}
               className="w-full resize-none rounded-md border-gray-300 focus:border-indigo-500 focus:ring-indigo-500"
             />
           </div>
