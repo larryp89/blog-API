@@ -1,11 +1,14 @@
 import { useAuth } from "../../../shared/authContext";
+import { useUser } from "../../../shared/userContext";
 import { useNavigate } from "react-router-dom";
 
 function AdminLogout() {
   const { logout } = useAuth();
+  const { removeStoredUser } = useUser();
   const navigate = useNavigate();
   const handleClick = () => {
     logout();
+    removeStoredUser();
     navigate("");
   };
   return (

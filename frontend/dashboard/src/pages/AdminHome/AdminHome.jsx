@@ -1,13 +1,14 @@
 import { useState, useEffect } from "react";
 import { useAuth } from "../../../../shared/authContext";
+import { useUser } from "../../../../shared/userContext";
+import { fetchAuthorPosts } from "../../../../shared/services/apiMethods";
 import FormContainer from "../../../../shared/components/FormContainer";
 import AdminLoginForm from "../../components/AdminLoginForm";
-import { fetchAuthorPosts } from "../../../../shared/services/apiMethods";
 import AdminBlogItem from "../../components/AdminBlogItem";
 
 function AdminHome() {
   const { isLoggedIn } = useAuth();
-  const [user, setUser] = useState(null);
+  const { user } = useUser();
   const [posts, setPosts] = useState([]);
   const [error, setError] = useState(null);
 
@@ -17,7 +18,6 @@ function AdminHome() {
 
       try {
         const data = await fetchAuthorPosts();
-        setUser(data.user);
         setPosts(data.posts);
         console.log(data.posts);
       } catch (err) {

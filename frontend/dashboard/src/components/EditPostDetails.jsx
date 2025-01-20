@@ -29,7 +29,7 @@ function EditPostDetails({ post }) {
         return;
       }
       await editPost(postDetails);
-      navigate("/admin/dashboard");
+      navigate("/admin");
     } catch (err) {
       console.log("editPostDetails error", err);
     }
@@ -46,7 +46,7 @@ function EditPostDetails({ post }) {
         return;
       }
       await deletePost(postDetails);
-      navigate("/admin/dashboard"); // Navigate to the dashboard or another route
+      navigate("/admin"); // Navigate to the dashboard or another route
     } catch (err) {
       console.log("deletePost error", err);
     }

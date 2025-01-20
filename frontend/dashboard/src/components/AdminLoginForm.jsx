@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useAuth } from "../../../shared/authContext";
+import { useUser } from "../../../shared/userContext";
 import { login as loginService } from "../../../shared/services/apiMethods";
 import { Link, useNavigate } from "react-router-dom";
 import FormInput from "../../../shared/components/FormInput";
@@ -7,12 +8,13 @@ import FormContainer from "../../../shared/components/FormContainer";
 
 function AdminLoginForm() {
   const { login } = useAuth();
+  const { user, storeUser } = useUser();
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
     email: "",
     password: "",
     isAdminSite: true,
   });
-  const navigate = useNavigate();
 
   const handleChange = (event) => {
     const { name, value } = event.target;
@@ -27,8 +29,13 @@ function AdminLoginForm() {
     try {
       const response = await loginService(formData);
       console.log("THE RESPONSE IS", response);
-      if (response.token) {
+      if (response) {
+        const user = {
+          username: response.user.username,
+          userID: response.user.userID,
+        };
         login(response.token);
+        storeUser(user);
         navigate(""); // Redirect to the blog page
       }
     } catch (err) {
