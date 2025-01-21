@@ -29,4 +29,13 @@ const postValidator = [
   body("content").notEmpty().withMessage("Content cannot be empty"),
 ];
 
-module.exports = { validationResult, signupValidator, postValidator };
+const commentValidator = [
+  body("content").notEmpty().withMessage("Comment cannot be blank"),
+];
+
+module.exports = {
+  validationResult,
+  signupValidator,
+  postValidator,
+  commentValidator,
+};

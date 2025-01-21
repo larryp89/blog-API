@@ -11,6 +11,8 @@ function AddCommentForm({ postID, onCommentAdded }) {
     content: "",
     postID: postID,
   });
+  const [error, setError] = useState("");
+  const [errorMessages, setErrorMessages] = useState([]);
 
   const handleChange = (event) => {
     const { value } = event.target;
@@ -27,6 +29,12 @@ function AddCommentForm({ postID, onCommentAdded }) {
       setComment({ ...commentData, content: "" }); // Clear the input
       onCommentAdded(); // Trigger refresh of comments
     } catch (err) {
+      if (err.errors) {
+        setError(err.message || "An error occured.");
+        setErrorMessages(err.errors);
+      } else {
+        setError("An unknown error occurred.");
+      }
       console.log(err);
     }
   };
@@ -35,6 +43,18 @@ function AddCommentForm({ postID, onCommentAdded }) {
     <div className="mt-6">
       <FormContainer>
         <form onSubmit={handleSubmit} className="space-y-4">
+          {error && (
+            <div className="mb-4 rounded-lg bg-red-50 p-4 text-sm text-red-800">
+              <p>{error}</p>
+              {errorMessages.length > 0 && (
+                <ul className="list-disc pl-5">
+                  {errorMessages.map((errMessage, index) => (
+                    <li key={index}>{errMessage}</li>
+                  ))}
+                </ul>
+              )}
+            </div>
+          )}
           <div className="rounded-lg border border-gray-200 bg-white p-4">
             <FormInput
               text="Add a comment"
