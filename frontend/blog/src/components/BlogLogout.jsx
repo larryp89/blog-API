@@ -13,7 +13,7 @@ function BlogLogout() {
   return (
     <>
       <button
-        className={`w-full rounded-lg px-4 py-2 font-medium transition-colors bg-indigo-600 text-white hover:bg-indigo-700`}
+        className="text-sm mr-3 text-gray-600 hover:text-indigo-600"
         onClick={handleClick}
       >
         Logout

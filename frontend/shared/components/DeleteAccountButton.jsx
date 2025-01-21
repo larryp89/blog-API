@@ -27,9 +27,12 @@ function DeleteAccountButton() {
   };
 
   return (
-    <>
-      <button onClick={handleDelete}>Delete account</button>
-    </>
+    <button
+      onClick={handleDelete}
+      className="text-sm text-gray-600 hover:text-indigo-600"
+    >
+      Delete account
+    </button>
   );
 }
 

@@ -1,6 +1,7 @@
 import { Link, useLocation } from "react-router-dom";
 import { useAuth } from "../../../shared/authContext";
 import AdminLogout from "./AdminLogout";
+import DeleteAccountButton from "../../../shared/components/DeleteAccountButton";
 
 const AdminNavbar = () => {
   const { isLoggedIn } = useAuth();
@@ -36,7 +37,10 @@ const AdminNavbar = () => {
 
         <div>
           {isLoggedIn ? (
-            <AdminLogout />
+            <>
+              <AdminLogout />
+              <DeleteAccountButton />
+            </>
           ) : (
             <Link
               to="/signup"
