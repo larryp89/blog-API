@@ -8,7 +8,6 @@ import FormInput from "../../../shared/components/FormInput";
 function LoginForm() {
   const { login } = useAuth();
   const { storeUser } = useUser();
-
   const [formData, setFormData] = useState({ email: "", password: "" });
   const [error, setError] = useState("");
   const [isLoading, setIsLoading] = useState(false);

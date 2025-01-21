@@ -81,24 +81,41 @@ const login = asyncHandler(async (req, res) => {
       site: isAdminSite ? "dashboard" : "blog",
     };
 
-    jwt.sign(tokenPayload, "secretkey", { expiresIn: "2h" }, (err, token) => {
-      if (err) {
-        return res.status(500).json({ error: "Error creating token" });
-      }
+    jwt.sign(
+      tokenPayload,
+      process.env.JWT_SECRET,
+      { expiresIn: "2h" },
+      (err, token) => {
+        if (err) {
+          return res.status(500).json({ error: "Error creating token" });
+        }
 
-      return res.json({
-        token,
-        user: {
-          username: userDetails.username,
-          userID: userDetails.id,
-          email: userDetails.email,
-          role: userDetails.role,
-        },
-      });
-    });
+        return res.json({
+          token,
+          user: {
+            username: userDetails.username,
+            userID: userDetails.id,
+            email: userDetails.email,
+            role: userDetails.role,
+          },
+        });
+      },
+    );
   } else {
     res.status(401).json({ error: "Invalid credentials" });
   }
 });
 
-module.exports = { createUser, login };
+const deleteUser = asyncHandler(async (req, res) => {
+  const email = req.body.email;
+  try {
+    await userService.deleteUser(email);
+    console.log("USER DELETED");
+    res.json({ message: "User deleted" });
+  } catch (err) {
+    console.log("OOPS", err);
+    res.status(400).json({ error: err });
+  }
+});
+
+module.exports = { createUser, login, deleteUser };

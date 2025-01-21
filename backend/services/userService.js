@@ -14,6 +14,8 @@ async function getUserByUsername(username) {
   return await userRepository.getUserByUsername(username);
 }
 
-// TODO: add delete user
+async function deleteUser(email) {
+  return await userRepository.deleteUser(email);
+}
 
-module.exports = { createUser, getUserByEmail, getUserByUsername };
+module.exports = { createUser, getUserByEmail, getUserByUsername, deleteUser };

@@ -9,9 +9,8 @@ function verifyToken(req, res, next) {
 
   const bearer = bearerHeader.split(" ");
   const token = bearer[1];
-  //   TODO: Modify secret key
   try {
-    const decoded = jwt.verify(token, "secretkey");
+    const decoded = jwt.verify(token, process.env.JWT_SECRET);
     // decoded will contain { authorID, email } set on userController
     req.user = decoded; //NB Same as how added by passport in local strategy
     next();

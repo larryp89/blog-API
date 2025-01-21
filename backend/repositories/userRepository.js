@@ -27,4 +27,12 @@ async function getUserByUsername(username) {
   });
 }
 
-module.exports = { createUser, getUserByEmail, getUserByUsername };
+async function deleteUser(email) {
+  return await prisma.user.delete({
+    where: {
+      email: email,
+    },
+  });
+}
+
+module.exports = { createUser, getUserByEmail, getUserByUsername, deleteUser };
