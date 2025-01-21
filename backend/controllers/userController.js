@@ -2,23 +2,62 @@ const userService = require("../services/userService");
 const asyncHandler = require("express-async-handler");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
+const { validationResult } = require("../middleware/validateForms");
 
 const createUser = asyncHandler(async (req, res) => {
-  const email = req.body.email;
-  const password = req.body.password;
-  const username = req.body.username;
-  const role = req.body.author ? "author" : "reader";
+  const errors = validationResult(req);
+  if (!errors.isEmpty()) {
+    const errorMessages = errors.array().map((err) => err.msg);
+    return res
+      .status(400)
+      .json({ error: "Validation error", messages: errorMessages });
+  }
+
+  const { email, password, username, author } = req.body;
+  const role = author ? "author" : "reader";
+
   try {
+    // Check if email exists
+    const existingEmail = await userService.getUserByEmail(email);
+    if (existingEmail) {
+      return res.status(400).json({
+        error: "Validation error",
+        messages: ["This email is already registered"],
+      });
+    }
+
+    // Check if username exists
+    const existingUsername = await userService.getUserByUsername(username);
+    if (existingUsername) {
+      return res.status(400).json({
+        error: "Validation error",
+        messages: ["This username is already taken"],
+      });
+    }
+
     await userService.createUser(email, password, username, role);
     return res.json("New user successfully added!");
   } catch (err) {
-    return res.json("Something went wrong:", err);
+    console.log(err);
+    // Handle specific database constraint errors if they slip through
+    if (err.code === "23505") {
+      // PostgreSQL unique constraint violation code
+      const field = err.detail.includes("email") ? "email" : "username";
+      return res.status(400).json({
+        error: "Validation error",
+        messages: [`This ${field} is already registered`],
+      });
+    }
+
+    return res
+      .status(500)
+      .json({ error: "Server error", message: err.message });
   }
 });
 
 const login = asyncHandler(async (req, res) => {
   const { email, password, isAdminSite } = req.body;
-  const userDetails = await userService.getUser(email);
+  const userDetails = await userService.getUserByEmail(email);
 
   // Check if user exists
   if (!userDetails) {
@@ -35,7 +74,6 @@ const login = asyncHandler(async (req, res) => {
   }
 
   if (match) {
-    // Only include necessary user data in the token (never password)
     const tokenPayload = {
       authorID: userDetails.id,
       username: userDetails.username,
@@ -43,8 +81,7 @@ const login = asyncHandler(async (req, res) => {
       site: isAdminSite ? "dashboard" : "blog",
     };
 
-    // TODO Change secret key
-    jwt.sign(tokenPayload, "secretkey", { expiresIn: "10s" }, (err, token) => {
+    jwt.sign(tokenPayload, "secretkey", { expiresIn: "2h" }, (err, token) => {
       if (err) {
         return res.status(500).json({ error: "Error creating token" });
       }

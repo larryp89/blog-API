@@ -6,10 +6,14 @@ async function createUser(email, password, username, role) {
   return await userRepository.createUser(email, hashedPassword, username, role);
 }
 
-async function getUser(email) {
-  return await userRepository.getUser(email);
+async function getUserByEmail(email) {
+  return await userRepository.getUserByEmail(email);
+}
+
+async function getUserByUsername(username) {
+  return await userRepository.getUserByUsername(username);
 }
 
 // TODO: add delete user
 
-module.exports = { createUser, getUser };
+module.exports = { createUser, getUserByEmail, getUserByUsername };

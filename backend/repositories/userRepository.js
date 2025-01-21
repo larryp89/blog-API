@@ -11,7 +11,7 @@ async function createUser(email, password, username, role) {
   });
 }
 
-async function getUser(email) {
+async function getUserByEmail(email) {
   return await prisma.user.findFirst({
     where: {
       email: email,
@@ -19,4 +19,12 @@ async function getUser(email) {
   });
 }
 
-module.exports = { createUser, getUser };
+async function getUserByUsername(username) {
+  return await prisma.user.findFirst({
+    where: {
+      username: username,
+    },
+  });
+}
+
+module.exports = { createUser, getUserByEmail, getUserByUsername };

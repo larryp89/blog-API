@@ -1,5 +1,14 @@
 import { getToken } from "../utils/localStorage";
 
+class ApiError extends Error {
+  constructor(message, status, errors = []) {
+    super(message);
+    this.name = "ApiError";
+    this.status = status;
+    this.errors = errors;
+  }
+}
+
 class ApiClient {
   constructor() {
     this.baseURL = "http://localhost:3000/api";
@@ -8,32 +17,29 @@ class ApiClient {
     };
   }
 
-  // Helper to get auth header
   getAuthHeaders() {
     const token = getToken();
     return token ? { Authorization: `Bearer ${token}` } : {};
   }
 
-  // Helper to handle responses
   async handleResponse(response) {
-    // Handle token expiration
+    const data = await response.json().catch(() => ({}));
+
     if (response.status === 401 || response.status === 403) {
-      // Let the caller know authentication failed
-      throw new Error("Authentication failed");
+      throw new ApiError("Authentication failed", response.status);
     }
 
-    // Parse JSON response
-    const data = await response.json();
+    if (response.status === 400 && data.messages) {
+      throw new ApiError("Invalid details", response.status, data.messages);
+    }
 
-    // Handle unsuccessful responses
     if (!response.ok) {
-      throw new Error(data.error || "An error occurred");
+      throw new ApiError(data.error || "An error occurred", response.status);
     }
 
     return data;
   }
 
-  // Generic request method
   async request(endpoint, options = {}) {
     const url = `${this.baseURL}${endpoint}`;
     const headers = {
@@ -51,13 +57,11 @@ class ApiClient {
 
       return await this.handleResponse(response);
     } catch (error) {
-      // Log error for debugging
       console.error(`API request failed: ${endpoint}`, error);
       throw error;
     }
   }
 
-  // HTTP method helpers
   async get(endpoint) {
     return this.request(endpoint, { method: "GET" });
   }
@@ -84,6 +88,5 @@ class ApiClient {
   }
 }
 
-// Create and export a single instance
 const apiClient = new ApiClient();
 export default apiClient;

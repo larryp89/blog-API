@@ -1,7 +1,8 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { signup } from "../../../shared/services/apiMethods";
 import FormCheckbox from "../../../shared/components/FormCheckbox";
 import FormInput from "../../../shared/components/FormInput";
-import { signup } from "../../../shared/services/apiMethods";
 
 function SignupForm() {
   const [formData, setFormData] = useState({
@@ -13,7 +14,9 @@ function SignupForm() {
   });
 
   const [error, setError] = useState("");
+  const [errorMessages, setErrorMessages] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
+  const navigate = useNavigate();
 
   const handleChange = (event) => {
     const { name, type, checked, value } = event.target;
@@ -25,15 +28,19 @@ function SignupForm() {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    setError("");
     setIsLoading(true);
 
     try {
       const response = await signup(formData);
       console.log(response);
-      // Add success handling here
+      navigate("/");
     } catch (err) {
-      setError(err.message || "An error occurred during signup");
+      if (err.errors) {
+        setError(err.message || "An error occurred during signup");
+        setErrorMessages(err.errors);
+      } else {
+        setError("An unknown error occurred during signup");
+      }
     } finally {
       setIsLoading(false);
     }
@@ -48,7 +55,14 @@ function SignupForm() {
       <form onSubmit={handleSubmit} className="space-y-4">
         {error && (
           <div className="mb-4 rounded-lg bg-red-50 p-4 text-sm text-red-800">
-            {error}
+            <p>{error}</p>
+            {errorMessages.length > 0 && (
+              <ul className="list-disc pl-5">
+                {errorMessages.map((errMessage, index) => (
+                  <li key={index}>{errMessage}</li>
+                ))}
+              </ul>
+            )}
           </div>
         )}
 

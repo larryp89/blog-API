@@ -32,15 +32,6 @@ function BlogHome() {
           </h1>
           <FormContainer>
             <LoginForm />
-            <div className="mt-4 text-center text-sm text-gray-600">
-              Not a member?{" "}
-              <Link
-                to="/signup"
-                className="text-indigo-600 hover:text-indigo-700"
-              >
-                Sign up!
-              </Link>
-            </div>
           </FormContainer>
         </div>
       )}
