@@ -16,6 +16,8 @@ const AuthProvider = ({ children }) => {
     const token = getToken();
     if (token) {
       setIsLoggedIn(true);
+    } else {
+      setIsLoggedIn(false);
     }
   }, []);
 

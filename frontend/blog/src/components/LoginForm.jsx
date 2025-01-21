@@ -3,12 +3,11 @@ import { useAuth } from "../../../shared/authContext";
 import { useUser } from "../../../shared/userContext";
 import { login as loginService } from "../../../shared/services/apiMethods";
 import { Link, useNavigate } from "react-router-dom";
-import { setUserDetails } from "../../../shared/utils/localStorage";
 import FormInput from "../../../shared/components/FormInput";
 
 function LoginForm() {
   const { login } = useAuth();
-  const { setUser } = useUser();
+  const { storeUser } = useUser();
   const [formData, setFormData] = useState({ email: "", password: "" });
 
   const navigate = useNavigate();
@@ -28,12 +27,11 @@ function LoginForm() {
       console.log("THE RESPONSE IS", response);
       if (response.token) {
         login(response.token);
-        const storedUser = {
+        const newUser = {
           username: response.user.username,
           userID: response.user.userID,
         };
-        setUserDetails(storedUser);
-        setUser(storedUser);
+        storeUser(newUser);
         navigate("");
       }
     } catch (err) {

@@ -44,7 +44,7 @@ const login = asyncHandler(async (req, res) => {
     };
 
     // TODO Change secret key
-    jwt.sign(tokenPayload, "secretkey", { expiresIn: "2h" }, (err, token) => {
+    jwt.sign(tokenPayload, "secretkey", { expiresIn: "10s" }, (err, token) => {
       if (err) {
         return res.status(500).json({ error: "Error creating token" });
       }
