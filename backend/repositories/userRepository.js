@@ -27,10 +27,10 @@ async function getUserByUsername(username) {
   });
 }
 
-async function deleteUser(email) {
+async function deleteUser(username) {
   return await prisma.user.delete({
     where: {
-      email: email,
+      username: username,
     },
   });
 }

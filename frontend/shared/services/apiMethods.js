@@ -25,6 +25,8 @@ const login = (formData) => apiClient.post("/auth/login", formData);
 
 const signup = (formData) => apiClient.post("/auth/signup", formData);
 
+const deleteUser = (formData) => apiClient.delete("/auth/delete", formData);
+
 export {
   fetchPosts,
   login,
@@ -36,4 +38,5 @@ export {
   deletePost,
   fetchPostComments,
   addComment,
+  deleteUser,
 };

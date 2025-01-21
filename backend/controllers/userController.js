@@ -107,13 +107,11 @@ const login = asyncHandler(async (req, res) => {
 });
 
 const deleteUser = asyncHandler(async (req, res) => {
-  const email = req.body.email;
+  const username = req.body.username;
   try {
-    await userService.deleteUser(email);
-    console.log("USER DELETED");
+    await userService.deleteUser(username);
     res.json({ message: "User deleted" });
   } catch (err) {
-    console.log("OOPS", err);
     res.status(400).json({ error: err });
   }
 });
