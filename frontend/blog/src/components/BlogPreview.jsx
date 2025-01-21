@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
-import BlogItem from "./BlogItem";
 import { fetchPosts } from "../../../shared/services/apiMethods";
 import { useAuth } from "../../../shared/authContext";
+import { useUser } from "../../../shared/userContext";
+import BlogItem from "./BlogItem";
 
 // Get all the blog posts and display them as BlogItems
 function BlogPreview() {
@@ -9,6 +10,7 @@ function BlogPreview() {
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
   const { logout } = useAuth();
+  const { removeStoredUser } = useUser();
 
   useEffect(() => {
     const fetchData = async () => {
@@ -16,8 +18,9 @@ function BlogPreview() {
         const data = await fetchPosts();
         setPosts(data.posts);
       } catch (err) {
-        if (err.message == "Unauthorised") {
+        if (err.message == "Authentication failed") {
           logout();
+          removeStoredUser();
         } else {
           setError(err);
         }

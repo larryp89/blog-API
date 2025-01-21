@@ -1,12 +1,16 @@
 import { useEffect, useState } from "react";
 import { fetchAuthorPosts } from "../../../shared/services/apiMethods.js";
 import AdminBlogItem from "./AdminBlogItem.jsx";
+import { useUser } from "../../../shared/userContext.jsx";
+import { useAuth } from "../../../shared/authContext.jsx";
 
 // Get all the blog posts and display them as BlogItems
 function AdminPostsPreview() {
   const [posts, setPosts] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
+  const { logout } = useAuth();
+  const { removeStoredUser } = useUser();
 
   useEffect(() => {
     const fetchData = async () => {
@@ -14,7 +18,12 @@ function AdminPostsPreview() {
         const data = await fetchAuthorPosts();
         setPosts(data.posts);
       } catch (err) {
-        setError(err);
+        if (err.message == "Authentication failed") {
+          logout();
+          removeStoredUser();
+        } else {
+          setError(err);
+        }
       } finally {
         setIsLoading(false);
       }

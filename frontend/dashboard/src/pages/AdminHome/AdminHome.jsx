@@ -5,56 +5,42 @@ import { fetchAuthorPosts } from "../../../../shared/services/apiMethods";
 import FormContainer from "../../../../shared/components/FormContainer";
 import AdminLoginForm from "../../components/AdminLoginForm";
 import AdminBlogItem from "../../components/AdminBlogItem";
+import AdminPostsPreview from "../../components/AdminPostsPreview";
 
 function AdminHome() {
   const { isLoggedIn } = useAuth();
   const { user } = useUser();
-  const [posts, setPosts] = useState([]);
   const [error, setError] = useState(null);
 
-  useEffect(() => {
-    const getUserData = async () => {
-      if (!isLoggedIn) return;
+  // useEffect(() => {
+  //   const getUserData = async () => {
+  //     if (!isLoggedIn) return;
 
-      try {
-        const data = await fetchAuthorPosts();
-        setPosts(data.posts);
-        console.log(data.posts);
-      } catch (err) {
-        console.error("Error fetching author posts", err);
-        setError("Failed to load post data");
-      }
-    };
+  //     try {
+  //       const data = await fetchAuthorPosts();
+  //       setPosts(data.posts);
+  //       console.log(data.posts);
+  //     } catch (err) {
+  //       console.error("Error fetching author posts", err);
+  //       setError("Failed to load post data");
+  //     }
+  //   };
 
-    getUserData();
-  }, [isLoggedIn]);
+  //   getUserData();
+  // }, [isLoggedIn]);
 
   return (
     <div className="container mx-auto px-4 py-12">
       {isLoggedIn ? (
         <div className="text-center">
           <h1 className="mb-6 text-4xl font-bold text-gray-900">
-            Welcome to Blog Manager, {user ? ` ${user.username}` : ""}
+            Welcome to Blog Manager, {user.username}
           </h1>
           <p className="mb-8 text-lg text-gray-600">
             This is where you can edit, publish, unpublish, or delete your blog
             posts. Click on a post to edit.
           </p>
-          {posts && posts.length > 0 ? (
-            <div>
-              <ul>
-                {posts.map((post) => (
-                  <li key={post.id}>
-                    <AdminBlogItem blogPost={post} />
-                  </li>
-                ))}
-              </ul>
-            </div>
-          ) : (
-            <div>
-              <p>You have not yet written any posts</p>
-            </div>
-          )}
+          <AdminPostsPreview />
         </div>
       ) : (
         <div className="mx-auto max-w-md">

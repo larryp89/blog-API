@@ -7,6 +7,7 @@ import FormCheckbox from "../../../shared/components/FormCheckbox";
 
 function CreatePost() {
   const navigate = useNavigate();
+  const [error, setError] = useState(null);
   const [postData, setPostData] = useState({
     title: "",
     content: "",
@@ -31,11 +32,21 @@ function CreatePost() {
       setPostData({ title: "", content: "", isPublished: false });
       navigate("/admin");
     } catch (err) {
-      console.log("CreatePost error", err);
+      if (err.message == "Authentication failed") {
+        setError("Your session has expired. Please login to create a new post");
+      } else {
+        setError(
+          "An error occurred while creating the post. Please try again.",
+        );
+      }
     }
   };
 
-  return (
+  return error ? (
+    <div className="mt-6">
+      <h1>{error}</h1>
+    </div>
+  ) : (
     <div className="mt-6">
       <FormContainer>
         <h1 className="text-lg font-semibold mb-4">Create a New Post</h1>

@@ -1,7 +1,7 @@
 import AdminLayout from "./components/AdminLayout";
 import CreateNewPost from "./pages/CreateNewPost/CreateNewPost";
 import EditPost from "./pages/EditPost/EditPost";
-import AdminDashboard from "./pages/AdminDashboard/AdminDashboard";
+
 import AdminApp from "./AdminApp";
 
 const adminRoutes = [
@@ -10,7 +10,6 @@ const adminRoutes = [
     element: <AdminLayout />,
     children: [
       { path: "", element: <AdminApp /> },
-      { path: "dashboard", element: <AdminDashboard /> },
       { path: "new-post", element: <CreateNewPost /> },
       { path: "edit/:postID", element: <EditPost /> },
     ],
