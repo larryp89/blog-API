@@ -7,7 +7,8 @@ import FormCheckbox from "../../../shared/components/FormCheckbox";
 
 function CreatePost() {
   const navigate = useNavigate();
-  const [error, setError] = useState(null);
+  const [error, setError] = useState("");
+  const [errorMessages, setErrorMessages] = useState([]);
   const [postData, setPostData] = useState({
     title: "",
     content: "",
@@ -24,32 +25,44 @@ function CreatePost() {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
+    setError("");
+    setErrorMessages([]);
+
     try {
       if (!window.confirm("Are you sure you are ready to submit?")) {
         return;
       }
-      await createPost(postData);
+      const response = await createPost(postData);
       setPostData({ title: "", content: "", isPublished: false });
       navigate("/admin");
     } catch (err) {
-      if (err.message == "Authentication failed") {
+      if (err.status === 401 || err.status === 403) {
         setError("Your session has expired. Please login to create a new post");
+      } else if (err.errors && err.errors.length > 0) {
+        setError(err.message);
+        setErrorMessages(err.errors);
       } else {
-        setError(
-          "An error occurred while creating the post. Please try again.",
-        );
+        setError(err.message || "An error occurred while creating the post");
       }
     }
   };
 
-  return error ? (
-    <div className="mt-6">
-      <h1>{error}</h1>
-    </div>
-  ) : (
+  return (
     <div className="mt-6">
       <FormContainer>
         <h1 className="text-lg font-semibold mb-4">Create a New Post</h1>
+        {(error || errorMessages.length > 0) && (
+          <div className="mb-4 rounded-lg bg-red-50 p-4 text-sm text-red-800">
+            {error && <p className="font-medium">{error}</p>}
+            {errorMessages.length > 0 && (
+              <ul className="mt-2 list-disc pl-5">
+                {errorMessages.map((message, index) => (
+                  <li key={index}>{message}</li>
+                ))}
+              </ul>
+            )}
+          </div>
+        )}
         <form onSubmit={handleSubmit} className="space-y-4">
           <div className="rounded-lg border border-gray-200 bg-white p-4">
             <FormInput

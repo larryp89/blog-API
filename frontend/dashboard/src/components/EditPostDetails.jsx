@@ -7,6 +7,8 @@ import FormCheckbox from "../../../shared/components/FormCheckbox";
 
 function EditPostDetails({ post }) {
   const navigate = useNavigate();
+  const [error, setError] = useState("");
+  const [errorMessages, setErrorMessages] = useState([]);
   const [postDetails, setPostDetails] = useState({
     title: post.title,
     content: post.content,
@@ -22,42 +24,74 @@ function EditPostDetails({ post }) {
     });
   };
 
+  const clearErrors = () => {
+    setError("");
+    setErrorMessages([]);
+  };
+
+  const handleError = (err) => {
+    if (err.status === 401 || err.status === 403) {
+      setError("Your session has expired. Please login to continue.");
+    } else if (err.errors && err.errors.length > 0) {
+      setError(err.message);
+      setErrorMessages(err.errors);
+    } else {
+      setError(err.message || "An error occurred. Please try again.");
+    }
+  };
+
   const handleSubmit = async (event) => {
     event.preventDefault();
+    clearErrors();
+
     try {
-      if (!window.confirm("Confirm edit?")) {
+      if (!window.confirm("Are you sure you want to save these changes?")) {
         return;
       }
       await editPost(postDetails);
       navigate("/admin");
     } catch (err) {
-      console.log("editPostDetails error", err);
+      handleError(err);
     }
   };
 
   const handleDelete = async (event) => {
     event.preventDefault();
+    clearErrors();
+
     try {
       if (
         !window.confirm(
-          "ARE YOU SURE YOU WANT TO DELETE THIS. IT WILL BE GONE FOREVER...",
+          "Are you sure you want to delete this post? This action cannot be undone.",
         )
       ) {
         return;
       }
       await deletePost(postDetails);
-      navigate("/admin"); // Navigate to the dashboard or another route
+      navigate("/admin");
     } catch (err) {
-      console.log("deletePost error", err);
+      handleError(err);
     }
   };
 
   return (
     <div className="mt-6">
       <FormContainer>
-        <h1 className="text-lg font-semibold mb-4">
-          This is the edit post form
-        </h1>
+        <h1 className="text-lg font-semibold mb-4">Edit Post</h1>
+
+        {(error || errorMessages.length > 0) && (
+          <div className="mb-4 rounded-lg bg-red-50 p-4 text-sm text-red-800">
+            {error && <p className="font-medium">{error}</p>}
+            {errorMessages.length > 0 && (
+              <ul className="mt-2 list-disc pl-5">
+                {errorMessages.map((message, index) => (
+                  <li key={index}>{message}</li>
+                ))}
+              </ul>
+            )}
+          </div>
+        )}
+
         <form onSubmit={handleSubmit} className="space-y-4">
           <div className="rounded-lg border border-gray-200 bg-white p-4">
             <FormInput
@@ -81,26 +115,25 @@ function EditPostDetails({ post }) {
               handleChange={handleChange}
               name="isPublished"
               value={postDetails.isPublished}
-              className="w-full resize-none rounded-md border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 mt-4"
+              className="mt-4"
             />
           </div>
-          <div className="flex justify-center mt-4">
+          <div className="flex justify-between gap-4">
+            <button
+              onClick={handleDelete}
+              type="button"
+              className="flex-1 rounded-lg bg-red-600 px-4 py-2 text-white transition-colors hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2"
+            >
+              Delete Post
+            </button>
             <button
               type="submit"
-              className="rounded-lg bg-indigo-600 px-4 py-2 text-white transition-colors hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+              className="flex-1 rounded-lg bg-indigo-600 px-4 py-2 text-white transition-colors hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
             >
-              Edit Post
+              Save Changes
             </button>
           </div>
         </form>
-        <div className="flex justify-center mt-4">
-          <button
-            onClick={handleDelete}
-            className="rounded-lg bg-red-600 px-4 py-2 text-white transition-colors hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2"
-          >
-            Delete this post :(
-          </button>
-        </div>
       </FormContainer>
     </div>
   );

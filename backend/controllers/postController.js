@@ -1,5 +1,6 @@
 const postService = require("../services/postService");
 const asyncHandler = require("express-async-handler");
+const { validationResult } = require("../middleware/validateForms");
 
 const getAllPosts = asyncHandler(async (req, res) => {
   const posts = await postService.getAllPosts();
@@ -27,6 +28,14 @@ const getAuthorPosts = asyncHandler(async (req, res) => {
 });
 
 const createPost = asyncHandler(async (req, res) => {
+  const errors = validationResult(req);
+  if (!errors.isEmpty()) {
+    const errorMessages = errors.array().map((err) => err.msg);
+    return res
+      .status(400)
+      .json({ error: "Form error", messages: errorMessages });
+  }
+
   const title = req.body.title;
   const content = req.body.content;
   const isPublished = req.body.isPublished;
@@ -43,13 +52,21 @@ const deletePost = asyncHandler(async (req, res) => {
 });
 
 const editPost = asyncHandler(async (req, res) => {
+  const errors = validationResult(req);
+  if (!errors.isEmpty()) {
+    const errorMessages = errors.array().map((err) => err.msg);
+    return res
+      .status(400)
+      .json({ error: "Form error", messages: errorMessages });
+  }
+
   const postID = req.body.postID;
   const title = req.body.title;
   const content = req.body.content;
   const isPublished = req.body.isPublished;
   const authorID = req.user.authorID;
   await postService.editPost(authorID, postID, title, content, isPublished);
-  res.json({ messge: "Post successfully udpated!" });
+  res.json({ messge: "Post successfully updated!" });
 });
 
 module.exports = {

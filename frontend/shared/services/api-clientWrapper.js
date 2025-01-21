@@ -29,8 +29,12 @@ class ApiClient {
       throw new ApiError("Authentication failed", response.status);
     }
 
-    if (response.status === 400 && data.messages) {
-      throw new ApiError("Invalid details", response.status, data.messages);
+    if (response.status === 400) {
+      throw new ApiError(
+        data.error || "Invalid details",
+        response.status,
+        data.messages || [],
+      );
     }
 
     if (!response.ok) {

@@ -8,8 +8,9 @@ import FormContainer from "../../../shared/components/FormContainer";
 
 function AdminLoginForm() {
   const { login } = useAuth();
-  const { user, storeUser } = useUser();
+  const { storeUser } = useUser();
   const navigate = useNavigate();
+  const [error, setError] = useState("");
   const [formData, setFormData] = useState({
     email: "",
     password: "",
@@ -39,6 +40,7 @@ function AdminLoginForm() {
         navigate(""); // Redirect to the blog page
       }
     } catch (err) {
+      setError(err.message || "An error occurred during login");
       console.log(err);
     }
   };
@@ -47,6 +49,11 @@ function AdminLoginForm() {
     <div className="mt-6">
       <FormContainer>
         <form onSubmit={handleSubmit} className="space-y-4">
+          {error && (
+            <div className="mb-4 rounded-lg bg-red-50 p-4 text-sm text-red-800">
+              {error}
+            </div>
+          )}
           <div className="rounded-lg border border-gray-200 bg-white p-4">
             <FormInput
               text="Email"

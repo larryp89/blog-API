@@ -20,4 +20,13 @@ const signupValidator = [
     .withMessage("Password must contain an uppercase letter and a number"),
 ];
 
-module.exports = { validationResult, signupValidator };
+const postValidator = [
+  body("title")
+    .notEmpty()
+    .withMessage("Title cannot be empty")
+    .isLength({ max: 100 })
+    .withMessage("Title max length 100 characters"),
+  body("content").notEmpty().withMessage("Content cannot be empty"),
+];
+
+module.exports = { validationResult, signupValidator, postValidator };
