@@ -1,4 +1,11 @@
 {
   "version": 2,
-  "rewrites": [{ "source": "/(.*)", "destination": "backend/api" }]
+  "builds": [
+    {
+      "src": "package.json",
+      "use": "@vercel/static-build",
+      "config": { "distDir": "backend" }
+    }
+  ],
+  "routes": [{ "src": "/(.*)", "dest": "backend/api" }]
 }
