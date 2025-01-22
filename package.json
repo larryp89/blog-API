@@ -5,8 +5,7 @@
   "main": "backend/api/index.js",
   "scripts": {
     "start": "node backend/api/index.js",
-    "migrate": "prisma migrate deploy",
-    "vercel-build": "npm run migrate && node backend/api/index.js"
+    "migrate": "prisma migrate deploy"
   },
   "keywords": [],
   "author": "",
