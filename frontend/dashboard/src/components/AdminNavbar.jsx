@@ -1,7 +1,7 @@
 import { Link, useLocation } from "react-router-dom";
 import { useAuth } from "../../../shared/authContext";
 import AdminLogout from "./AdminLogout";
-import DeleteAccountButton from "../../../shared/components/DeleteAccountButton";
+import AdminDeleteAccountButton from "./AdminDeleteAccountButton";
 
 const AdminNavbar = () => {
   const { isLoggedIn } = useAuth();
@@ -39,7 +39,7 @@ const AdminNavbar = () => {
           {isLoggedIn ? (
             <>
               <AdminLogout />
-              <DeleteAccountButton />
+              <AdminDeleteAccountButton />
             </>
           ) : (
             <Link

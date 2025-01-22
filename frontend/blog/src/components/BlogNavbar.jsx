@@ -1,7 +1,7 @@
 import { Link, useLocation } from "react-router-dom";
 import { useAuth } from "../../../shared/authContext";
 import BlogLogout from "./BlogLogout";
-import DeleteAccountButton from "../../../shared/components/DeleteAccountButton";
+import BlogDeleteAccountButton from "./BlogDeleteAccountButton";
 
 const BlogNavbar = () => {
   const { isLoggedIn } = useAuth();
@@ -38,7 +38,7 @@ const BlogNavbar = () => {
           {isLoggedIn ? (
             <>
               <BlogLogout />
-              <DeleteAccountButton />
+              <BlogDeleteAccountButton />
             </>
           ) : (
             <Link
