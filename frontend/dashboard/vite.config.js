@@ -4,5 +4,11 @@ import react from "@vitejs/plugin-react";
 // https://vite.dev/config/
 export default defineConfig({
   plugins: [react()],
-  server: { port: 4002 },
+  server: { port: 4000 },
+  resolve: {
+    alias: {
+      "@": "/src", // Alias for dashboard's src folder
+      shared: "/frontend/shared", // Alias for shared folder
+    },
+  },
 });
