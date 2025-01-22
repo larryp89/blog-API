@@ -6,7 +6,7 @@ import AdminApp from "./AdminApp";
 
 const adminRoutes = [
   {
-    path: "/admin",
+    path: "/",
     element: <AdminLayout />,
     children: [
       { path: "", element: <AdminApp /> },
