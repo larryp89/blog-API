@@ -19,7 +19,7 @@ function DeleteAccountButton() {
         await deleteUser({ username: user.username });
         logout();
         removeStoredUser();
-        navigate("/");
+        navigate("/admin");
       } catch (err) {
         console.log(err);
       }
