@@ -80,11 +80,6 @@ function AdminLoginForm() {
               Log in
             </button>
           </div>
-          <div className="flex justify-center mt-4">
-            <Link to="" className="text-indigo-600 hover:text-indigo-800">
-              Home
-            </Link>
-          </div>
         </form>
       </FormContainer>
     </div>
