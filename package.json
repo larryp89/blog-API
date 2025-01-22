@@ -4,7 +4,7 @@
   "description": "",
   "main": "backend/api/index.js",
   "scripts": {
-    "start": "node app.js",
+    "start": "node backend/api/index.js",
     "migrate": "prisma migrate deploy"
   },
   "keywords": [],
