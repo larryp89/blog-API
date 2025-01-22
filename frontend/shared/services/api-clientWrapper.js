@@ -11,7 +11,8 @@ class ApiError extends Error {
 
 class ApiClient {
   constructor() {
-    this.baseURL = "http://localhost:3000/api";
+    this.baseURL =
+      process.env.REACT_APP_API_BASE_URL || "http://localhost:3000/api";
     this.defaultHeaders = {
       "Content-Type": "application/json",
     };
