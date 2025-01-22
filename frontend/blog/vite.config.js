@@ -5,10 +5,4 @@ import react from "@vitejs/plugin-react";
 export default defineConfig({
   plugins: [react()],
   server: { port: 4000 },
-  resolve: {
-    alias: {
-      "@": "/src", // Alias for blog's src folder
-      shared: "/frontend/shared", // Alias for shared folder
-    },
-  },
 });

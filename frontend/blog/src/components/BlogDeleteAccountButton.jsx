@@ -3,7 +3,7 @@ import { useUser } from "../../../shared/userContext";
 import { useAuth } from "../../../shared/authContext";
 import { useNavigate } from "react-router-dom";
 
-function DeleteAccountButton() {
+function BlogDeleteAccountButton() {
   const { user, removeStoredUser } = useUser();
   const { logout } = useAuth();
   const navigate = useNavigate();
@@ -36,4 +36,4 @@ function DeleteAccountButton() {
   );
 }
 
-export default DeleteAccountButton;
+export default BlogDeleteAccountButton;
