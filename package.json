@@ -2,7 +2,7 @@
   "name": "blog-api",
   "version": "1.0.0",
   "description": "",
-  "main": "backend/api/index.js",
+  "main": "backend/api/index.ts",
   "scripts": {
     "start": "node backend/api/index.js",
     "migrate": "prisma migrate deploy"
