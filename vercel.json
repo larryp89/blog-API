@@ -1,4 +1,12 @@
 {
   "version": 2,
-  "rewrites": [{ "source": "/(.*)", "destination": "backend/api" }]
+  "rewrites": [
+    { "source": "/api/(.*)", "destination": "/backend/api/index.js" }
+  ],
+  "routes": [
+    {
+      "src": "/api/(.*)",
+      "dest": "/backend/api/index.js"
+    }
+  ]
 }
