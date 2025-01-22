@@ -1,4 +1,4 @@
-import { deleteUser } from "../services/apiMethods";
+import { deleteUser } from "../../../shared/services/apiMethods";
 import { useUser } from "../../../shared/userContext";
 import { useAuth } from "../../../shared/authContext";
 import { useNavigate } from "react-router-dom";
