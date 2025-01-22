@@ -1,6 +1,6 @@
 import { deleteUser } from "../services/apiMethods";
-import { useUser } from "../userContext";
-import { useAuth } from "../authContext";
+import { useUser } from "../../../shared/userContext";
+import { useAuth } from "../../../shared/authContext";
 import { useNavigate } from "react-router-dom";
 
 function DeleteAccountButton() {
