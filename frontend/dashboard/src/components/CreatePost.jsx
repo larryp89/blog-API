@@ -34,7 +34,7 @@ function CreatePost() {
       }
       const response = await createPost(postData);
       setPostData({ title: "", content: "", isPublished: false });
-      navigate("/admin");
+      navigate("/");
     } catch (err) {
       if (err.status === 401 || err.status === 403) {
         setError("Your session has expired. Please login to create a new post");

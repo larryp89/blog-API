@@ -5,7 +5,7 @@
   "main": "backend/api/index.js",
   "scripts": {
     "start": "node backend/api/index.js",
-    "migrate": "prisma migrate deploy"
+    "postinstall": "prisma generate"
   },
   "keywords": [],
   "author": "",

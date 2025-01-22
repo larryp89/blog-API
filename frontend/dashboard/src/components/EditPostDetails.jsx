@@ -49,7 +49,7 @@ function EditPostDetails({ post }) {
         return;
       }
       await editPost(postDetails);
-      navigate("/admin");
+      navigate("/");
     } catch (err) {
       handleError(err);
     }
