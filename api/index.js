@@ -10,14 +10,13 @@ const assetsPath = path.join(__dirname, "../public");
 const app = express();
 app.use(express.static(assetsPath));
 app.use(
-  cors(),
-  //   {
-  //   origin: [
-  //     "https://blog-api-blog.vercel.app",
-  //     "https://blog-api-dashboard.vercel.app",
-  //   ],
-  //       credentials: true,
-  // }
+  cors({
+    origin: [
+      "https://blog-api-blog.vercel.app",
+      "https://blog-api-dashboard.vercel.app",
+    ],
+    credentials: true,
+  }),
 );
 app.use(express.json()); // Used to parse JSON payloads rather than URL encoded which is for directly submitted form
 app.use(express.urlencoded({ extended: true }));
