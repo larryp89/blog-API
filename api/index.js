@@ -12,8 +12,8 @@ app.use(express.static(assetsPath));
 app.use(
   cors({
     origin: [
-      "https://blog-api-blog.vercel.app/",
-      "https://blog-api-dashboard.vercel.app/",
+      "https://blog-api-blog.vercel.app",
+      "https://blog-api-dashboard.vercel.app",
     ],
     credentials: true,
   }),
