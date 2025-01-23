@@ -10,6 +10,11 @@ const AdminNavbar = () => {
   // Simple function to check if link is active
   const isActive = (path) => location.pathname === path;
 
+  // Function to handle external link redirection
+  const handleExternalSignup = () => {
+    window.location.href = "https://blog-api-blog.vercel.app/";
+  };
+
   return (
     <nav className="w-full bg-white shadow">
       {/* Banner text */}
@@ -21,14 +26,14 @@ const AdminNavbar = () => {
       <div className="mx-auto flex max-w-5xl items-center justify-between px-4 py-3">
         <div className="flex space-x-6">
           <Link
-            to=""
+            to="/admin"
             className={`text-sm ${isActive("/admin") ? "text-indigo-600" : "text-gray-600 hover:text-indigo-600"}`}
           >
             My Dashboard
           </Link>
 
           <Link
-            to="new-post"
+            to="/admin/new-post"
             className={`text-sm ${isActive("/admin/new-post") ? "text-indigo-600" : "text-gray-600 hover:text-indigo-600"}`}
           >
             Write new post
@@ -42,12 +47,12 @@ const AdminNavbar = () => {
               <AdminDeleteAccountButton />
             </>
           ) : (
-            <Link
-              to="/signup"
+            <button
+              onClick={handleExternalSignup}
               className={`text-sm ${isActive("/signup") ? "text-indigo-600" : "text-gray-600 hover:text-indigo-600"}`}
             >
               Sign Up
-            </Link>
+            </button>
           )}
         </div>
       </div>
