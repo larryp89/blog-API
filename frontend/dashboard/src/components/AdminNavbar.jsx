@@ -27,14 +27,14 @@ const AdminNavbar = () => {
         <div className="flex space-x-6">
           <Link
             to="/admin"
-            className={`text-sm ${isActive("/admin") ? "text-indigo-600" : "text-gray-600 hover:text-indigo-600"}`}
+            className={`text-sm ${isActive("/") ? "text-indigo-600" : "text-gray-600 hover:text-indigo-600"}`}
           >
             My Dashboard
           </Link>
 
           <Link
             to="/admin/new-post"
-            className={`text-sm ${isActive("/admin/new-post") ? "text-indigo-600" : "text-gray-600 hover:text-indigo-600"}`}
+            className={`text-sm ${isActive("/new-post") ? "text-indigo-600" : "text-gray-600 hover:text-indigo-600"}`}
           >
             Write new post
           </Link>
@@ -47,7 +47,7 @@ const AdminNavbar = () => {
               <AdminDeleteAccountButton />
             </>
           ) : (
-            <button
+            <button 
               onClick={handleExternalSignup}
               className={`text-sm ${isActive("/signup") ? "text-indigo-600" : "text-gray-600 hover:text-indigo-600"}`}
             >
