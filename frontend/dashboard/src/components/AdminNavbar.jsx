@@ -26,14 +26,14 @@ const AdminNavbar = () => {
       <div className="mx-auto flex max-w-5xl items-center justify-between px-4 py-3">
         <div className="flex space-x-6">
           <Link
-            to="/admin"
+            to="/"
             className={`text-sm ${isActive("/") ? "text-indigo-600" : "text-gray-600 hover:text-indigo-600"}`}
           >
             My Dashboard
           </Link>
 
           <Link
-            to="/admin/new-post"
+            to="/new-post"
             className={`text-sm ${isActive("/new-post") ? "text-indigo-600" : "text-gray-600 hover:text-indigo-600"}`}
           >
             Write new post
