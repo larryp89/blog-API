@@ -3,8 +3,8 @@ const cors = require("cors");
 const path = require("node:path");
 
 require("dotenv").config();
-const postRoutes = require("../routes/postRoutes");
-const userRoutes = require("../routes/userRoutes");
+const postRoutes = require("../backend/routes/postRoutes");
+const userRoutes = require("../backend/routes/userRoutes");
 const assetsPath = path.join(__dirname, "../public");
 
 const app = express();
